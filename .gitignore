@@ -1,3 +1,6 @@
+custom.el*
+
+elpa-*/
 eln-cache/
 auto-save-list/
 
