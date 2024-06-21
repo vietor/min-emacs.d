@@ -32,5 +32,7 @@
 (eval-when-compile
   (require 'use-package))
 
+(use-package diminish :ensure t)
+
 (provide 'elpa)
 ;;; elpa.el ends here

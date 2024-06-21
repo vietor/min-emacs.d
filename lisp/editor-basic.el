@@ -18,11 +18,13 @@
 (setq inhibit-startup-screen t
       initial-scratch-message "")
 
-;; Use text editor as default
+;; Use text as default
 (setq-default major-mode 'text-mode)
 (setq initial-major-mode 'text-mode)
 
 ;; Use bettert behavior
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
 (setq-default case-fold-search t
               column-number-mode t
               truncate-lines nil
