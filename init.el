@@ -7,8 +7,8 @@
   (when (version< emacs-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
 
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (setq custom-file (locate-user-emacs-file "custom.el"))
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (require 'elpa)
 
@@ -22,4 +22,3 @@
 
 (provide 'init)
 ;;; init.el ends here
-
