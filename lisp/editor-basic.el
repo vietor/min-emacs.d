@@ -14,6 +14,9 @@
 (when (fboundp 'horizontal-scroll-bar-mode)
   (horizontal-scroll-bar-mode -1))
 
+;; Load better theme
+(load-theme 'tango-dark)
+
 ;; Clean starup screen
 (setq inhibit-startup-screen t
       initial-scratch-message "")
@@ -22,7 +25,7 @@
 (setq-default major-mode 'text-mode)
 (setq initial-major-mode 'text-mode)
 
-;; Use bettert behavior
+;; Use better behavior
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (setq-default case-fold-search t
