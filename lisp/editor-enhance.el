@@ -2,6 +2,19 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Load better theme
+
+(unless window-system
+  (load-theme 'tango-dark))
+
+(use-package doom-themes
+  :ensure t
+  :when window-system
+  :config
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (load-theme 'doom-dracula t))
+
 ;; Diminish `abbrev'
 (use-package abbrev
   :diminish)

@@ -2,9 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Load better theme
-(load-theme 'tango-dark)
-
 ;; Clean starup screen
 (setq inhibit-startup-screen t
       initial-scratch-message "")
