@@ -15,6 +15,8 @@
 (require 'editor-basic)
 (require 'editor-enhance)
 
+(require 'toolkit-git)
+
 (require 'text-editor)
 
 (when (file-exists-p custom-file)

@@ -56,5 +56,9 @@
       auto-save-default nil
       auto-save-list-file-prefix nil)
 
+;; Disable bell
+(setq visible-bell nil
+      ring-bell-function 'ignore)
+
 (provide 'editor-basic)
 ;;; editor-basic.el ends here

@@ -1,6 +1,7 @@
 custom.el*
 
 elpa*/
+server/
 eshell/
 eln-cache/
 transient/
