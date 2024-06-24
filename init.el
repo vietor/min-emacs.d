@@ -35,6 +35,7 @@
 (require 'toolkit-grep)
 (require 'toolkit-complete)
 (require 'toolkit-formatter)
+(require 'toolkit-treesit)
 
 (require 'framework-eglot)
 

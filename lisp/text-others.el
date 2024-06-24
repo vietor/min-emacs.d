@@ -5,12 +5,16 @@
 ;; YAML
 (use-package yaml-mode
   :ensure t
-  :mode "\\.yml\\.erb\\'")
+  :mode "\\.yml\\.erb\\'"
+  :init
+  (add-to-list 'my/treesit-active-langs "yaml"))
 
 ;; JSON
 (use-package json-mode
   :ensure t
   :init
+  (add-to-list 'my/treesit-active-langs "json")
+
   (defun my/json-formatter-beautify ()
     (call-interactively 'json-mode-beautify))
   (add-to-list 'my/formatter-beautify-alist '(json-mode . my/json-formatter-beautify)))
@@ -37,7 +41,6 @@
         (goto-char (match-end 0))
         (backward-char 6) (insert "\n") (incf end))
       (indent-region begin end nil)))
-
   (add-to-list 'my/formatter-beautify-alist '(nxml-mode . my/nxml-formatter-beautify)))
 
 (provide 'text-others)

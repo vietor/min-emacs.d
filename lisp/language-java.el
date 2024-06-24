@@ -77,6 +77,7 @@
                                  "-jar" ,launcher-jar
                                  "-data" ,workspace-dir))))
 
+  (add-to-list 'my/treesit-active-langs "java")
   (add-to-list 'eglot-server-programs '((java-mode java-ts-mode) . my/eclipse-jdt--contact)))
 
 (provide 'language-java)

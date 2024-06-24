@@ -69,7 +69,7 @@
   (kill-buffer (current-buffer))
   (ignore-errors
     (delete-window)))
-(bind-key "M-g b k" 'my/kill-current-buffer)
+(bind-key "C-x C-k" 'my/kill-current-buffer)
 
 (defun my/kill-buffers-exclude-current ()
   (interactive)
