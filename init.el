@@ -26,13 +26,15 @@
 (require 'setup-elpa)
 
 (require 'editor-basic)
-(require 'editor-enhance)
 (require 'editor-locales)
+(require 'editor-enhance)
+(require 'editor-plugins)
 
 (require 'toolkit-git)
 (require 'toolkit-grep)
 
-(require 'framework-format)
+(require 'framework-complete)
+(require 'framework-formatter)
 (require 'framework-eglot)
 
 (require 'language-java)

@@ -1,4 +1,4 @@
-;;; framework-format.el --- -*- lexical-binding: t -*-
+;;; framework-formatter.el --- -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -35,5 +35,5 @@
 (bind-key "M-g b i" 'my/formatter-indent)
 (bind-key "M-g b f" 'my/formatter-beautify)
 
-(provide 'framework-format)
-;;; framework-format.el ends here
+(provide 'framework-formatter)
+;;; framework-formatter.el ends here

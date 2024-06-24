@@ -16,39 +16,17 @@
   :diminish
   :hook (after-init . global-move-dup-mode))
 
-;; Use better completion
-
-(setq tab-always-indent 'complete
-      completion-category-defaults nil
-      completion-category-overrides nil
-      completion-cycle-threshold 4)
-
-(use-package vertico
+;; Multiple cursors editor
+(use-package multiple-cursors
   :ensure t
-  :hook (after-init . vertico-mode))
-
-(use-package orderless
-  :ensure t
-  :config
-  (setq completion-styles '(orderless basic)))
-
-(use-package corfu
-  :ensure t
-  :hook (after-init . global-corfu-mode)
-  :config
-  (setq-default corfu-auto t
-                corfu-preview-current nil
-                corfu-quit-no-match 'separator)
-
-  (with-eval-after-load 'corfu
-    (corfu-popupinfo-mode)))
-
-(use-package corfu-terminal
-  :ensure t
-  :after corfu
-  :config
-  (with-eval-after-load 'corfu
-    (corfu-terminal-mode)))
+  :bind (("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-M->" . mc/skip-to-next-like-this)
+         ("C-M-<" .  mc/skip-to-previous-like-this)
+         ("M-<down-mouse-1>" . nil)
+         ("M-<mouse-1>" . mc/add-cursor-on-click))
+  :init
+  (defun mc/save-lists () "Ignore save history."))
 
 (provide 'editor-enhance)
 ;;; editor-enhance.el ends here
