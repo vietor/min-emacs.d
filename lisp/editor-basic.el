@@ -60,5 +60,14 @@
 (setq visible-bell nil
       ring-bell-function 'ignore)
 
+;; Use better indent behavior
+(setq-default tab-width 4
+              standard-indent 4
+              indent-tabs-mode nil)
+(add-hook 'c-mode-common-hook
+          (lambda()
+            (when indent-tabs-mode
+	      (setq tab-width c-basic-offset))))
+
 (provide 'editor-basic)
 ;;; editor-basic.el ends here

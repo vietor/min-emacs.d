@@ -1,4 +1,6 @@
-custom.el*
+projects
+custom.el
+preload.el
 
 elpa*/
 server/
@@ -6,4 +8,3 @@ eshell/
 eln-cache/
 transient/
 auto-save-list/
-

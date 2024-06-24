@@ -1,0 +1,12 @@
+{
+  "java": {
+    "format": {
+      "comments": {
+        "enabled": false
+      },
+      "settings": {
+        "url": "{{ETC-URL}}eclipse-java-google-style.xml"
+      }
+    }
+  }
+}
