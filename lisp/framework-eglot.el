@@ -18,6 +18,9 @@
 	  (replace-match "" t t))))
     (advice-add #'eglot--apply-text-edits :after #'my/eglot--text-clean-eol))
 
+  (add-to-list 'my/formatter-beautify-minor-alist
+               '(eglot--managed-mode . eglot-format-buffer))
+
   :config
   (setq-default eglot-autoshutdown t
                 eglot-sync-connect 1

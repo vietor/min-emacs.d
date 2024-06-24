@@ -27,9 +27,12 @@
 
 (require 'editor-basic)
 (require 'editor-enhance)
+(require 'editor-locales)
 
 (require 'toolkit-git)
+(require 'toolkit-grep)
 
+(require 'framework-format)
 (require 'framework-eglot)
 
 (require 'language-java)

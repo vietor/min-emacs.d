@@ -1,3 +1,7 @@
+GPATH
+GRTAGS
+GTAGS
+
 projects
 custom.el
 preload.el
