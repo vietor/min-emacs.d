@@ -1,4 +1,4 @@
-;;; framework-complete.el --- -*- lexical-binding: t -*-
+;;; toolkit-complete.el --- -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -34,5 +34,5 @@
   (with-eval-after-load 'corfu
     (corfu-terminal-mode)))
 
-(provide 'framework-complete)
-;;; framework-complete.el ends here
+(provide 'toolkit-complete)
+;;; toolkit-complete.el ends here

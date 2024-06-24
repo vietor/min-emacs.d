@@ -24,6 +24,7 @@
 ;; Load main configurations
 
 (require 'setup-elpa)
+(require 'setup-compat)
 
 (require 'editor-basic)
 (require 'editor-locales)
@@ -32,9 +33,9 @@
 
 (require 'toolkit-git)
 (require 'toolkit-grep)
+(require 'toolkit-complete)
+(require 'toolkit-formatter)
 
-(require 'framework-complete)
-(require 'framework-formatter)
 (require 'framework-eglot)
 
 (require 'language-java)

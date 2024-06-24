@@ -1,4 +1,4 @@
-;;e; setup-elpa.el --- -*- lexical-binding: t -*-
+;;; setup-elpa.el --- -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -2,18 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Clean startup gui
-(when (fboundp 'tooltip-mode)
-  (tooltip-mode -1))
-(when (fboundp 'menu-bar-mode)
-  (menu-bar-mode -1))
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
-(when (fboundp 'horizontal-scroll-bar-mode)
-  (horizontal-scroll-bar-mode -1))
-
 ;; Load better theme
 (load-theme 'tango-dark)
 
@@ -64,10 +52,10 @@
 (setq-default tab-width 4
               standard-indent 4
               indent-tabs-mode nil)
+(add-hook 'after-init-hook 'electric-indent-mode)
 (add-hook 'c-mode-common-hook
-          (lambda()
-            (when indent-tabs-mode
-	      (setq tab-width c-basic-offset))))
+          (lambda() (when indent-tabs-mode
+		      (setq tab-width c-basic-offset))))
 
 (provide 'editor-basic)
 ;;; editor-basic.el ends here

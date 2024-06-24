@@ -2,6 +2,26 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Diminish `abbrev'
+(use-package abbrev
+  :diminish)
+
+;; Use and diminish `autorevert'
+(use-package autorevert
+  :diminish auto-revert-mode
+  :hook (after-init . global-auto-revert-mode)
+  :init
+  (setq global-auto-revert-non-file-buffers t
+        auto-revert-verbose nil))
+
+;; Initialize `uniquify'
+(use-package uniquify
+  :init
+  (setq uniquify-buffer-name-style 'reverse
+        uniquify-separator " • "
+        uniquify-after-kill-buffer-p t
+        uniquify-ignore-buffers-re "^\\*"))
+
 ;; Use key help
 (use-package which-key
   :ensure t
@@ -27,6 +47,9 @@
          ("M-<mouse-1>" . mc/add-cursor-on-click))
   :init
   (defun mc/save-lists () "Ignore save history."))
+
+;; Bind key for rename
+(bind-key "M-g f r" 'rename-visited-file)
 
 (provide 'editor-enhance)
 ;;; editor-enhance.el ends here
