@@ -14,7 +14,7 @@
   (setq global-auto-revert-non-file-buffers t
         auto-revert-verbose nil))
 
-;; Initialize `uniquify'
+;; Use `uniquify' for `buffer-name'
 (use-package uniquify
   :init
   (setq uniquify-buffer-name-style 'reverse
@@ -22,7 +22,29 @@
         uniquify-after-kill-buffer-p t
         uniquify-ignore-buffers-re "^\\*"))
 
-;; Use key help
+;; Use better `list-buffers'
+(use-package ibuffer
+  :bind ([remap list-buffers] . ibuffer)
+  :config
+  (setq ibuffer-show-empty-filter-groups nil
+        ibuffer-filter-group-name-face 'font-lock-doc-face
+        ibuffer-saved-filter-groups '(("beautify"
+                                       ("Org" (mode . org-mode))
+                                       ("Magit" (name . "^magit"))
+                                       ("Temporary" (name . "^\\*")))))
+  (add-hook 'ibuffer-mode-hook
+            (lambda ()
+              (ibuffer-switch-to-saved-filter-groups "beautify"))))
+
+;; Use better `switch-window'
+(use-package switch-window
+  :ensure t
+  :bind ("C-x o" . switch-window)
+  :init
+  (setq-default switch-window-shortcut-style 'qwerty)
+  (setq-default switch-window-timeout nil))
+
+;; Use bind-key help
 (use-package which-key
   :ensure t
   :diminish
@@ -47,9 +69,6 @@
          ("M-<mouse-1>" . mc/add-cursor-on-click))
   :init
   (defun mc/save-lists () "Ignore save history."))
-
-;; Bind key for rename
-(bind-key "M-g f r" 'rename-visited-file)
 
 (provide 'editor-enhance)
 ;;; editor-enhance.el ends here

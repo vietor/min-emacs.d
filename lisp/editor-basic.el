@@ -57,5 +57,19 @@
           (lambda() (when indent-tabs-mode
 		      (setq tab-width c-basic-offset))))
 
+;; Use better mouse behavior
+
+(when window-system
+  (mouse-wheel-mode t)
+  (setq mouse-wheel-scroll-amount '(1
+                                    ((shift) . 5)
+                                    ((control))))
+  ;; Disable ugly text-scale
+  (defun mouse-wheel-text-scale (event)
+    (interactive (list last-input-event))))
+
+(when (fboundp 'pixel-scroll-precision-mode)
+  (pixel-scroll-precision-mode))
+
 (provide 'editor-basic)
 ;;; editor-basic.el ends here
