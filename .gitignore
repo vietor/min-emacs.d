@@ -1,6 +1,8 @@
 custom.el*
 
 elpa*/
+eshell/
 eln-cache/
+transient/
 auto-save-list/
 

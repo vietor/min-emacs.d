@@ -23,6 +23,10 @@
       completion-category-overrides nil
       completion-cycle-threshold 4)
 
+(use-package vertico
+  :ensure t
+  :hook (after-init . vertico-mode))
+
 (use-package orderless
   :ensure t
   :config

@@ -1,4 +1,4 @@
-;;; elpa.el --- -*- lexical-binding: t -*-
+;;e; setup-elpa.el --- -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -34,5 +34,5 @@
 
 (use-package diminish :ensure t)
 
-(provide 'elpa)
-;;; elpa.el ends here
+(provide 'setup-elpa)
+;;; setup-elpa.el ends here

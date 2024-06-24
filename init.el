@@ -10,7 +10,7 @@
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-(require 'elpa)
+(require 'setup-elpa)
 
 (require 'editor-basic)
 (require 'editor-enhance)
