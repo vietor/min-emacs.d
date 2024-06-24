@@ -40,6 +40,7 @@
 (require 'framework-eglot)
 
 (require 'language-java)
+(require 'language-python)
 
 (require 'text-others)
 

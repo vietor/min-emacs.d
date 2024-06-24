@@ -86,8 +86,6 @@
 
 ;; Use better file behavior
 
-(bind-key "M-g f r" 'rename-visited-file)
-
 (defun my/delete-current-buffer-file ()
   (interactive)
   (let ((filename (buffer-file-name))

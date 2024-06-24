@@ -44,7 +44,7 @@
   (setq-default switch-window-shortcut-style 'qwerty)
   (setq-default switch-window-timeout nil))
 
-;; Use bind-key help
+;; Use `bind-key' help
 (use-package which-key
   :ensure t
   :diminish

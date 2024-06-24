@@ -71,5 +71,10 @@
 (when (fboundp 'pixel-scroll-precision-mode)
   (pixel-scroll-precision-mode))
 
+;; Use better `bind-key'
+(bind-key "C-h" 'delete-backward-char)
+(bind-key "M-g r" 'replace-string)
+(bind-key "M-g f r" 'rename-visited-file)
+
 (provide 'editor-basic)
 ;;; editor-basic.el ends here
