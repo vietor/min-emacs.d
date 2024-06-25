@@ -42,6 +42,7 @@
 (require 'language-java)
 (require 'language-python)
 
+(require 'text-org)
 (require 'text-others)
 
 ;; Load custom configurations

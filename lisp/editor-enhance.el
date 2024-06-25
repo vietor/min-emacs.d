@@ -36,18 +36,21 @@
         uniquify-ignore-buffers-re "^\\*"))
 
 ;; Use better `list-buffers'
+
 (use-package ibuffer
   :bind ([remap list-buffers] . ibuffer)
   :config
   (setq ibuffer-show-empty-filter-groups nil
-        ibuffer-filter-group-name-face 'font-lock-doc-face
-        ibuffer-saved-filter-groups '(("beautify"
-                                       ("Org" (mode . org-mode))
-                                       ("Magit" (name . "^magit"))
-                                       ("Temporary" (name . "^\\*")))))
-  (add-hook 'ibuffer-mode-hook
-            (lambda ()
-              (ibuffer-switch-to-saved-filter-groups "beautify"))))
+        ibuffer-filter-group-name-face 'font-lock-doc-face))
+
+(use-package ibuffer-vc
+  :ensure t
+  :config
+  (defun my/ibuffer-set-up-preferred-filters ()
+    (ibuffer-vc-set-filter-groups-by-vc-root)
+    (unless (eq ibuffer-sorting-mode 'filename/process)
+      (ibuffer-do-sort-by-filename/process)))
+  (add-hook 'ibuffer-hook 'my/ibuffer-set-up-preferred-filters))
 
 ;; Use better `switch-window'
 (use-package switch-window
