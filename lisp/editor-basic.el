@@ -52,21 +52,24 @@
 (add-hook 'after-init-hook 'electric-indent-mode)
 (add-hook 'c-mode-common-hook
           (lambda() (when indent-tabs-mode
-		      (setq tab-width c-basic-offset))))
+                      (setq tab-width c-basic-offset))))
+
+;; Use better scroll behavior
+(setq-default scroll-preserve-screen-position 'always)
+(when (fboundp 'pixel-scroll-precision-mode)
+  (pixel-scroll-precision-mode))
 
 ;; Use better mouse behavior
-
 (when window-system
   (mouse-wheel-mode t)
-  (setq mouse-wheel-scroll-amount '(1
+  (setq mouse-yank-at-point t
+        mouse-wheel-scroll-amount '(1
                                     ((shift) . 5)
                                     ((control))))
   ;; Disable ugly text-scale
   (defun mouse-wheel-text-scale (event)
     (interactive (list last-input-event))))
 
-(when (fboundp 'pixel-scroll-precision-mode)
-  (pixel-scroll-precision-mode))
 
 ;; Use better `bind-key'
 (bind-key "C-h" 'delete-backward-char)
