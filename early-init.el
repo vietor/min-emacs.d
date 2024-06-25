@@ -18,12 +18,15 @@
 (when (fboundp 'horizontal-scroll-bar-mode)
   (horizontal-scroll-bar-mode -1))
 
-;; Adjust default GC threshold
-(setq gc-cons-threshold (* 24 1024 1024))
-
 ;; Use better process performance
 (setq read-process-output-max (* 4 1024 1024)
       process-adaptive-read-buffering nil)
+
+;; Adjust default GC threshold
+(setq gc-cons-threshold most-positive-fixnum)
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (setq gc-cons-threshold (* 24 1024 1024))))
 
 (provide 'early-init)
 ;;; early-init.el ends here
