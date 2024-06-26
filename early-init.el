@@ -18,7 +18,7 @@
 (when (fboundp 'horizontal-scroll-bar-mode)
   (horizontal-scroll-bar-mode -1))
 
-;; Use better process performance
+;; Better process performance
 (setq read-process-output-max (* 4 1024 1024)
       process-adaptive-read-buffering nil)
 

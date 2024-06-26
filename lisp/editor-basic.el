@@ -2,15 +2,20 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Better `bind-key'
+(bind-key "C-h" 'delete-backward-char)
+(bind-key "M-g r" 'replace-string)
+(bind-key "M-g f r" 'rename-visited-file)
+
 ;; Clean starup screen
 (setq inhibit-startup-screen t
       initial-scratch-message "")
 
-;; Use text as default
+;; Set text as default
 (setq-default major-mode 'text-mode)
 (setq initial-major-mode 'text-mode)
 
-;; Use better behavior
+;; Better behavior
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (setq-default case-fold-search t
@@ -19,18 +24,18 @@
               indicate-empty-lines t
               sentence-end-double-space nil)
 
-;; Use better selection
+;; Better selection
 (cua-selection-mode t)
 (setq-default shift-select-mode nil)
 (add-hook 'after-init-hook 'delete-selection-mode)
 
-;; Use better mark operation
+;; Better mark operation
 (global-set-key (kbd "C-.") 'set-mark-command)
 (global-set-key (kbd "C-x C-.") 'pop-global-mark)
 (setq-default set-mark-command-repeat-pop t)
 (add-hook 'after-init-hook 'transient-mark-mode)
 
-;; Use better paren highlight
+;; Better paren highlight
 (add-hook 'after-init-hook 'show-paren-mode)
 (when (fboundp 'electric-pair-mode)
   (add-hook 'after-init-hook 'electric-pair-mode))
@@ -45,7 +50,7 @@
 (setq visible-bell nil
       ring-bell-function 'ignore)
 
-;; Use better indent behavior
+;; Better indent behavior
 (setq-default tab-width 4
               standard-indent 4
               indent-tabs-mode nil)
@@ -54,12 +59,12 @@
           (lambda() (when indent-tabs-mode
                       (setq tab-width c-basic-offset))))
 
-;; Use better scroll behavior
+;; Better scroll behavior
 (setq-default scroll-preserve-screen-position 'always)
 (when (fboundp 'pixel-scroll-precision-mode)
   (pixel-scroll-precision-mode))
 
-;; Use better mouse behavior
+;; Better mouse behavior
 (when window-system
   (mouse-wheel-mode t)
   (setq mouse-yank-at-point t
@@ -70,11 +75,15 @@
   (defun mouse-wheel-text-scale (event)
     (interactive (list last-input-event))))
 
+;; Better long lines behavior
+(when (fboundp 'so-long-mode)
+  (add-hook 'after-init-hook 'global-so-long-mode))
 
-;; Use better `bind-key'
-(bind-key "C-h" 'delete-backward-char)
-(bind-key "M-g r" 'replace-string)
-(bind-key "M-g f r" 'rename-visited-file)
+;; Active recent file history
+(bind-key "M-g f l" 'recentf-open)
+(setq-default recentf-max-saved-items 1000
+              recentf-exclude `("/tmp/" "/ssh:"))
+(add-hook 'after-init-hook 'recentf-mode)
 
 (provide 'editor-basic)
 ;;; editor-basic.el ends here

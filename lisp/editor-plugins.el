@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Use better comment behavior
+;; Better comment behavior
 (defun my/comment-like-eclipse ()
   (interactive)
   (let ((start (line-beginning-position))
@@ -36,7 +36,7 @@
       (switch-to-buffer buffer))))
 (bind-key "<f7>" 'my/switch-to-candidate-buffer)
 
-;;; Use better buffer behavior
+;;; Better buffer behavior
 
 (defun my/switch-to-scratch-buffer ()
   (interactive)
@@ -84,7 +84,7 @@
   (mapc 'kill-buffer (cdr (buffer-list (current-buffer)))))
 (bind-key "M-g b 0" 'my/kill-buffers-switch-scratch)
 
-;; Use better file behavior
+;; Better file behavior
 
 (defun my/delete-current-buffer-file ()
   (interactive)

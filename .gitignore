@@ -2,11 +2,13 @@ GPATH
 GRTAGS
 GTAGS
 
+recentf
 projects
 custom.el
 preload.el
 
 elpa*/
+url/
 server/
 eshell/
 eln-cache/

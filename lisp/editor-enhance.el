@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Load better theme
+;; Load theme
 
 (unless window-system
   (load-theme 'tango-dark))
@@ -19,7 +19,7 @@
 (use-package abbrev
   :diminish)
 
-;; Use and diminish `autorevert'
+;; Active `autorevert'
 (use-package autorevert
   :diminish auto-revert-mode
   :hook (after-init . global-auto-revert-mode)
@@ -27,7 +27,7 @@
   (setq global-auto-revert-non-file-buffers t
         auto-revert-verbose nil))
 
-;; Use `uniquify' for `buffer-name'
+;; Better `buffer-name'
 (use-package uniquify
   :init
   (setq uniquify-buffer-name-style 'reverse
@@ -35,7 +35,7 @@
         uniquify-after-kill-buffer-p t
         uniquify-ignore-buffers-re "^\\*"))
 
-;; Use better `list-buffers'
+;; Better `list-buffers'
 
 (use-package ibuffer
   :bind ([remap list-buffers] . ibuffer)
@@ -52,7 +52,7 @@
       (ibuffer-do-sort-by-filename/process)))
   (add-hook 'ibuffer-hook 'my/ibuffer-set-up-preferred-filters))
 
-;; Use better `switch-window'
+;; Better `switch-window'
 (use-package switch-window
   :ensure t
   :bind ("C-x o" . switch-window)
@@ -60,7 +60,7 @@
   (setq-default switch-window-shortcut-style 'qwerty)
   (setq-default switch-window-timeout nil))
 
-;; Use `bind-key' help
+;; Active `bind-key' help
 (use-package which-key
   :ensure t
   :diminish
@@ -68,7 +68,7 @@
   :config
   (setq-default which-key-idle-delay 1.5))
 
-;; Move text lines
+;; Move lines
 (use-package move-dup
   :ensure t
   :diminish
