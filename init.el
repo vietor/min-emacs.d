@@ -41,6 +41,7 @@
 
 (require 'language-java)
 (require 'language-python)
+(require 'language-javascript)
 
 (require 'text-org)
 (require 'text-others)

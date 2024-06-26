@@ -16,6 +16,7 @@
 (setq initial-major-mode 'text-mode)
 
 ;; Better behavior
+(setq use-short-answers t)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (setq-default case-fold-search t

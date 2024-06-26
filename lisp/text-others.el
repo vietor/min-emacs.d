@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Markdown
+(use-package markdown-mode
+  :ensure t)
+
 ;; YAML
 (use-package yaml-mode
   :ensure t

@@ -34,5 +34,12 @@
   (with-eval-after-load 'corfu
     (corfu-terminal-mode)))
 
+(use-package cape
+  :ensure t
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-keyword))
+
 (provide 'toolkit-complete)
 ;;; toolkit-complete.el ends here
