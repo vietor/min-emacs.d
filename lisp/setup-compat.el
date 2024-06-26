@@ -23,8 +23,7 @@
   (setq w32-pipe-read-delay 0
         w32-pipe-buffer-size (* 64 1024)
         w32-get-true-file-attributes nil
-        inhibit-compacting-font-caches t)
-  (setq-default bidi-display-reordering nil))
+        inhibit-compacting-font-caches t))
 
 (when (eq system-type 'darwin)
   (setq ns-pop-up-frames nil

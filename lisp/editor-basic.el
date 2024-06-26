@@ -11,9 +11,8 @@
 (setq inhibit-startup-screen t
       initial-scratch-message "")
 
-;; Set text as default
-(setq-default major-mode 'text-mode)
-(setq initial-major-mode 'text-mode)
+;; Set text as fundamental
+(setq initial-major-mode 'fundamental-mode)
 
 ;; Better behavior
 (setq use-short-answers t)
@@ -23,7 +22,8 @@
               column-number-mode t
               truncate-lines nil
               indicate-empty-lines t
-              sentence-end-double-space nil)
+              sentence-end-double-space nil
+              bidi-display-reordering nil)
 
 ;; Better selection
 (cua-selection-mode t)

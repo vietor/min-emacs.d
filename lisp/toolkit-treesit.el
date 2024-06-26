@@ -26,7 +26,6 @@
           (non-ts-mode (intern (concat lang "-mode"))))
       (when (and (fboundp ts-mode)
 		 (fboundp non-ts-mode))
-        (message "treesit: using %s in place of %s" ts-mode non-ts-mode)
         (add-to-list 'major-mode-remap-alist (cons non-ts-mode ts-mode)))))
 
   (defun my/auto-configure-treesit()
