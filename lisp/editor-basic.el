@@ -51,6 +51,10 @@
 (setq visible-bell nil
       ring-bell-function 'ignore)
 
+;; Disable dialog
+(setq use-dialog-box nil
+      use-file-dialog nil)
+
 ;; Better indent behavior
 (setq-default tab-width 4
               standard-indent 4

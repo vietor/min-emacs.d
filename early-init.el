@@ -7,6 +7,7 @@
 (setq package-enable-at-startup nil)
 
 ;; Clean startup gui
+(setq frame-title-format "%b")
 (when (fboundp 'tooltip-mode)
   (tooltip-mode -1))
 (when (fboundp 'menu-bar-mode)
