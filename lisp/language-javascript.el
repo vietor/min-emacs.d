@@ -9,10 +9,13 @@
          (:map js-ts-mode-map
                ("M-." . nil)))
   :init
-  (setq-default js-indent-level 2))
+  (setq-default js-indent-level 2)
+  (add-to-list 'my/treesit-active-langs "js"))
 
 (use-package typescript-mode
-  :ensure t)
+  :ensure t
+  :init
+  (add-to-list 'my/treesit-active-langs "typescript"))
 
 (use-package prettier-js
   :ensure t
