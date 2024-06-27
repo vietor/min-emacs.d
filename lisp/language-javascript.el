@@ -11,13 +11,19 @@
   :init
   (setq-default js-indent-level 2))
 
+(use-package typescript-mode
+  :ensure t)
+
 (use-package prettier-js
   :ensure t
   :when (executable-find "prettier")
   :commands (prettier-js)
   :init
-  (add-to-list 'my/formatter-beautify-alist '(js-mode . prettier-js))
-  (add-to-list 'my/formatter-beautify-alist '(js-ts-mode . prettier-js)))
+  (dolist (entity '((js-mode . prettier-js)
+                    (js-ts-mode . prettier-js)
+                    (typescript-mode . prettier-js)
+                    (typescript-ts-mode . prettier-js)))
+    (add-to-list 'my/formatter-beautify-alist entity)))
 
 (provide 'language-javascript)
 ;;; language-javascript.el ends here

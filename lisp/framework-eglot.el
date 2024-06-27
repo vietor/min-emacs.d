@@ -10,12 +10,13 @@
               ("C-c o" . eglot-code-actions)
               ("C-c C-r" . eglot-reconnect))
   :init
+  ;; Fix windows-nt EOL
   (when (eq system-type 'windows-nt)
     (defun my/eglot--text-clean-eol(&rest args)
       (save-excursion
-	(goto-char (point-min))
-	(while (re-search-forward "\r+$" nil t)
-	  (replace-match "" t t))))
+	    (goto-char (point-min))
+	    (while (re-search-forward "\r+$" nil t)
+	      (replace-match "" t t))))
     (advice-add #'eglot--apply-text-edits :after #'my/eglot--text-clean-eol))
 
   (add-to-list 'my/formatter-beautify-minor-alist
@@ -47,6 +48,7 @@
     (string-remove-suffix "-ts"
                           (if (fboundp 'eglot--language-id)
                               (eglot--language-id server)
+                            ;; Use first language
                             (car (eglot--language-ids server)))))
 
   (defun my/eglot--language-etc-path (&optional file)
