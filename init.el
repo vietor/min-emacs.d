@@ -39,6 +39,7 @@
 
 (require 'framework-eglot)
 
+(require 'language-cpp)
 (require 'language-java)
 (require 'language-python)
 (require 'language-javascript)
