@@ -18,19 +18,16 @@
 ;; agtags
 (use-package agtags
   :ensure t
+  :diminish
   :when (executable-find "global")
   :config
   (setq agtags-global-treat-text t)
-  (dolist (item '("GPATH" "GTAGS" "GRTAGS"))
-    (add-to-list 'grep-find-ignored-files item))
+  (dolist (file agtags-created-tag-files)
+    (add-to-list 'grep-find-ignored-files file))
 
-  (defun my/agtags-mode-on()
-    (agtags-mode 1)
-    (diminish 'agtags-mode))
-  
   (agtags-bind-keys)
   (dolist (hook '(prog-mode-hook text-mode-hook))
-    (add-hook hook 'my/agtags-mode-on)))
+    (add-hook hook 'agtags-mode)))
 
 (provide 'toolkit-grep)
 ;;; toolkit-grep.el ends here

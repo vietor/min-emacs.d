@@ -7,7 +7,6 @@
 (setq package-enable-at-startup nil)
 
 ;; Clean startup gui
-(setq frame-title-format "%b")
 (when (fboundp 'tooltip-mode)
   (tooltip-mode -1))
 (when (fboundp 'menu-bar-mode)
@@ -18,6 +17,8 @@
   (scroll-bar-mode -1))
 (when (fboundp 'horizontal-scroll-bar-mode)
   (horizontal-scroll-bar-mode -1))
+(when (fboundp 'set-scroll-bar-mode)
+  (set-scroll-bar-mode nil))
 
 ;; Better process performance
 (setq read-process-output-max (* 4 1024 1024)
@@ -26,8 +27,8 @@
 ;; Adjust default GC threshold
 (setq gc-cons-threshold most-positive-fixnum)
 (add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (setq gc-cons-threshold (* 24 1024 1024))))
+	      (lambda ()
+	        (setq gc-cons-threshold (* 24 1024 1024))))
 
 (provide 'early-init)
 ;;; early-init.el ends here

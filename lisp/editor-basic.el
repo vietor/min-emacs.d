@@ -10,6 +10,10 @@
 ;; Clean starup screen
 (setq inhibit-startup-screen t
       initial-scratch-message "")
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
 
 ;; Set text as fundamental
 (setq initial-major-mode 'fundamental-mode)

@@ -12,8 +12,6 @@
   :hook ((java-mode . eglot-ensure)
          (java-ts-mode . eglot-ensure))
   :init
-  (defconst eclipse-jdt-vmargs '("-Xmx1G" "-Xms128m" "-Xss256k"))
-
   (defclass eglot-eclipse-jdt (eglot-lsp-server) ()
     :documentation "Eclipse's Java Development Tools Language Server.")
 
@@ -42,20 +40,20 @@
                               (concat user-emacs-space-directory "eclipse.workspaces")))
            (launcher-jar nil)
            (lombok-jar nil)
-           (runtime-jdt-vmargs (append '() eclipse-jdt-vmargs)))
+           (runtime-jdt-vmargs '("-Xmx1G")))
 
       (unless (file-directory-p install-dir)
         (error "Not found 'eclipse.jdt.ls' directory in '%s'" user-emacs-space-directory))
 
       (setq launcher-jar
             (my/eclipse-jdt--found (expand-file-name "plugins" install-dir)
-                                "org\\.eclipse\\.equinox\\.launcher_.*\\.jar$"))
+                                   "org\\.eclipse\\.equinox\\.launcher_.*\\.jar$"))
       (unless (and launcher-jar (file-exists-p launcher-jar))
         (error "Not found 'eclipse.jdt.ls' launcher jar"))
 
       (setq lombok-jar
             (my/eclipse-jdt--found (concat user-emacs-space-directory "eclipse.assists")
-                                "lombok-.*\\.jar$"))
+                                   "lombok-.*\\.jar$"))
       (when (and lombok-jar (file-exists-p lombok-jar))
         (push (concat "-javaagent:" lombok-jar) runtime-jdt-vmargs))
 
