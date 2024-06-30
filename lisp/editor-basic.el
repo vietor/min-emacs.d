@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Better `bind-key'
+;; Better keys
 (bind-key "C-h" 'delete-backward-char)
 (bind-key "M-g r" 'replace-string)
 (bind-key "M-g f r" 'rename-visited-file)
@@ -25,6 +25,7 @@
 (setq-default case-fold-search t
               column-number-mode t
               truncate-lines nil
+              truncate-partial-width-windows nil
               indicate-empty-lines t
               sentence-end-double-space nil
               bidi-display-reordering nil)
