@@ -26,6 +26,7 @@
 (require 'setup-elpa)
 (require 'setup-compat)
 
+(require 'editor-mouse)
 (require 'editor-basic)
 (require 'editor-locales)
 (require 'editor-enhance)
