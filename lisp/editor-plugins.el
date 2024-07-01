@@ -19,6 +19,26 @@
     (comment-or-uncomment-region start end)))
 (bind-key "M-;" 'my/comment-like-eclipse)
 
+;; Better move cursor on line
+
+(defun smart-beginning-of-line ()
+  (interactive)
+  (let ((oldpos (point)))
+    (back-to-indentation)
+    (and (= oldpos (point))
+         (beginning-of-line))))
+(bind-key [remap move-beginning-of-line] 'smart-beginning-of-line)
+
+(defun smart-end-of-line ()
+  (interactive)
+  (let ((oldpos (point)))
+    (beginning-of-line)
+    (when (re-search-forward "[ \t]*$" (point-at-eol) t)
+      (goto-char (match-beginning 0)))
+    (when (= oldpos (point))
+      (end-of-line))))
+(bind-key [remap move-end-of-line] 'smart-end-of-line)
+
 ;; Switch to last buffer
 
 (defun my/candidate-buffer-p(buffer)

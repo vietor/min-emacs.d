@@ -9,7 +9,7 @@
 
 ;; Clean starup screen
 (setq inhibit-startup-screen t
-      initial-scratch-message "")
+      initial-scratch-message nil)
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name))
