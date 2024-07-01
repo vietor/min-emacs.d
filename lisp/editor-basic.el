@@ -46,6 +46,10 @@
 (when (fboundp 'electric-pair-mode)
   (add-hook 'after-init-hook 'electric-pair-mode))
 
+;; Active eldoc
+(when (fboundp 'global-eldoc-mode)
+  (add-hook 'after-init-hook 'global-eldoc-mode))
+
 ;; Disable file lock & backup
 (setq create-lockfiles nil
       make-backup-files nil

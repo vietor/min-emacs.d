@@ -32,8 +32,8 @@
       (goto-char (line-beginning-position))
       (set-window-start (selected-window) w-start))))
 
-(bind-key "M-g b i" 'my/formatter-indent)
-(bind-key "M-g b f" 'my/formatter-beautify)
+(bind-key "<f12>" 'my/formatter-indent)
+(bind-key "C-<f12>" 'my/formatter-beautify)
 
 (provide 'toolkit-formatter)
 ;;; toolkit-formatter.el ends here
