@@ -9,11 +9,12 @@
 
 ;; Clean starup screen
 (setq inhibit-startup-screen t
-      initial-scratch-message nil)
-(setq frame-title-format
+      initial-scratch-message nil
+      frame-title-format
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
+(advice-add #'display-startup-echo-area-message :override #'ignore)
 
 ;; Set text as fundamental
 (setq initial-major-mode 'fundamental-mode)
@@ -49,6 +50,11 @@
 ;; Active eldoc
 (when (fboundp 'global-eldoc-mode)
   (add-hook 'after-init-hook 'global-eldoc-mode))
+
+;; Disable line numbers
+(when (fboundp 'display-line-numbers-mode)
+  (setq-default display-line-numbers-width 3)
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode))
 
 ;; Disable file lock & backup
 (setq create-lockfiles nil
