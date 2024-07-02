@@ -16,20 +16,25 @@
                  "%b"))))
 (advice-add #'display-startup-echo-area-message :override #'ignore)
 
-;; Set text as fundamental
-(setq initial-major-mode 'fundamental-mode)
-
 ;; Better behavior
-(setq use-short-answers t)
+
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
+(setq use-short-answers t
+      initial-major-mode 'fundamental-mode)
 (setq-default case-fold-search t
               column-number-mode t
               truncate-lines nil
               truncate-partial-width-windows nil
-              indicate-empty-lines t
+              indicate-empty-lines nil
+              indicate-buffer-boundaries nil
               sentence-end-double-space nil
               bidi-display-reordering nil)
+
+;; Better cursor
+(blink-cursor-mode -1)
+(setq x-stretch-cursor nil)
 
 ;; Better selection
 (cua-selection-mode t)
