@@ -42,8 +42,7 @@
 (add-hook 'after-init-hook 'delete-selection-mode)
 
 ;; Better mark operation
-(global-set-key (kbd "C-.") 'set-mark-command)
-(global-set-key (kbd "C-x C-.") 'pop-global-mark)
+(global-set-key (kbd "M-SPC") 'set-mark-command)
 (setq-default set-mark-command-repeat-pop t)
 (add-hook 'after-init-hook 'transient-mark-mode)
 
