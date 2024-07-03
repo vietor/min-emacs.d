@@ -95,14 +95,14 @@
   (interactive)
   (delete-other-windows)
   (mapc 'kill-buffer (cdr (buffer-list (current-buffer)))))
-(bind-key "M-g b 1" 'my/kill-buffers-exclude-current)
+(bind-key "C-x 4 1" 'my/kill-buffers-exclude-current)
 
 (defun my/kill-buffers-switch-scratch ()
   (interactive)
   (delete-other-windows)
   (my/switch-to-empty-scratch-buffer)
   (mapc 'kill-buffer (cdr (buffer-list (current-buffer)))))
-(bind-key "M-g b 0" 'my/kill-buffers-switch-scratch)
+(bind-key "C-x 4 0" 'my/kill-buffers-switch-scratch)
 
 ;; Better file behavior
 
