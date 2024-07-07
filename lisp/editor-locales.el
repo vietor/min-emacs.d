@@ -13,12 +13,20 @@
 
 ;; Better font usage
 
-(defun my/font-installed-p (font-name)
-  (find-font (font-spec :name font-name)))
+(defun my/try-set-font (characters font-names)
+  (cl-loop for font-name in font-names
+           do (let ((font (font-spec :name font-name)))
+                (when (find-font font)
+                  (set-fontset-font t characters font nil 'prepend)
+                  (cl-return)))))
 
-(dolist (font-name '("Noto Color Emoji" "Apple Color Emoji" "Segoe UI Emoji"))
-  (when (my/font-installed-p font-name)
-    (set-fontset-font t 'emoji (font-spec :family font-name) nil 'prepend)))
+(defun my/setup-better-fonts ()
+  (my/try-set-font 'emoji '("Noto Color Emoji"
+                            "Apple Color Emoji"
+                            "Segoe UI Emoji"))
+  (my/try-set-font 'han '("Microsoft Yahei UI")))
+(add-hook 'window-setup-hook #'my/setup-better-fonts)
+(add-hook 'server-after-make-frame-hook #'my/setup-better-fonts)
 
 (provide 'editor-locales)
 ;;; editor-locales.el ends here
