@@ -29,9 +29,7 @@
   (setq ns-pop-up-frames nil
         mac-command-modifier 'meta
         mac-option-modifier 'none)
-  (setq-default locate-command "mdfind")
-  (set-fontset-font t 'symbol
-                    (font-spec :family "Apple Color Emoji") nil 'prepend))
+  (setq-default locate-command "mdfind"))
 
 (provide 'setup-compat)
 ;;; setup-compat.el ends here
