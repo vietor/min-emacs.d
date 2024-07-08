@@ -15,16 +15,17 @@
 
 (defun my/try-set-font (characters font-names)
   (cl-loop for font-name in font-names
-           do (let ((font (font-spec :name font-name)))
+           do (let ((font (font-spec :family font-name)))
                 (when (find-font font)
                   (set-fontset-font t characters font nil 'prepend)
                   (cl-return)))))
 
 (defun my/setup-better-fonts ()
-  (my/try-set-font 'emoji '("Noto Color Emoji"
-                            "Apple Color Emoji"
+  (my/try-set-font 'emoji '("Apple Color Emoji"
+                            "Noto Color Emoji"
                             "Segoe UI Emoji"))
-  (my/try-set-font 'han '("Microsoft Yahei UI")))
+  (my/try-set-font 'han '("PingFang SC"
+                          "Microsoft Yahei UI")))
 (add-hook 'window-setup-hook #'my/setup-better-fonts)
 (add-hook 'server-after-make-frame-hook #'my/setup-better-fonts)
 
