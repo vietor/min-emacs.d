@@ -43,6 +43,7 @@
 (require 'language-java)
 (require 'language-python)
 (require 'language-javascript)
+(require 'language-web)
 (require 'language-others)
 
 (require 'text-org)

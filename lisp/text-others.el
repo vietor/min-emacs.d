@@ -9,7 +9,6 @@
 ;; YAML
 (use-package yaml-mode
   :ensure t
-  :mode "\\.yml\\.erb\\'"
   :init
   (add-to-list 'my/treesit-active-langs "yaml"))
 

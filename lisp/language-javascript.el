@@ -3,7 +3,7 @@
 ;;; Code:
 
 (use-package js-mode
-  :mode "\\.\\(\\js\\|es6\\|mjs\\)\\(\\.erb\\)?\\'"
+  :mode "\\.\\(\\js\\|es6\\|mjs\\)\\'"
   :bind ((:map js-mode-map
                ("M-." . nil))
          (:map js-ts-mode-map
