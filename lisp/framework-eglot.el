@@ -2,6 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
+(use-package flymake
+  :bind (:map flymake-mode-map
+              ("M-n" . flymake-goto-next-error)
+              ("M-p" . flymake-goto-prev-error)))
+
 (use-package eglot
   :ensure t
   :demand t

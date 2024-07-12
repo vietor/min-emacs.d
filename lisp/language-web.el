@@ -14,7 +14,7 @@
                    ("lineup-calls" . nil)
                    ("lineup-concats" . nil)
                    ("lineup-ternary" . nil)))
-    (add-to-list 'web-mode-indentation-params item)))
+    (add-to-list 'web-mode-indentation-params param)))
 
 (provide 'language-web)
 ;;; language-web.el ends here
