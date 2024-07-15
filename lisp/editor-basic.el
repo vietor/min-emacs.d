@@ -8,7 +8,8 @@
 (bind-key "M-g f r" 'rename-visited-file)
 
 ;; Clean starup screen
-(setq inhibit-startup-screen t
+(setq inhibit-default-init t
+      inhibit-startup-screen t
       initial-scratch-message nil
       frame-title-format
       '((:eval (if (buffer-file-name)
@@ -114,7 +115,7 @@
 (add-hook 'emacs-startup-hook
           (lambda()
             (message "Load completed in %.02fs."
-                     (float-time (time-subtract after-init-time
+                     (float-time (time-subtract (current-time)
                                                 before-init-time)))))
 
 (provide 'editor-basic)
