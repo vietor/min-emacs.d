@@ -80,8 +80,9 @@
               indent-tabs-mode nil)
 (add-hook 'after-init-hook 'electric-indent-mode)
 (add-hook 'c-mode-common-hook
-          (lambda() (when indent-tabs-mode
-                      (setq tab-width c-basic-offset))))
+          (lambda()
+            (when indent-tabs-mode
+              (setq tab-width c-basic-offset))))
 
 ;; Better scroll behavior
 (setq-default scroll-preserve-screen-position 'always)
@@ -108,6 +109,13 @@
 (setq-default recentf-max-saved-items 1000
               recentf-exclude `("/tmp/" "/ssh:"))
 (add-hook 'after-init-hook 'recentf-mode)
+
+;; Disable startup time
+(add-hook 'emacs-startup-hook
+          (lambda()
+            (message "Load completed in %.02fs."
+                     (float-time (time-subtract after-init-time
+                                                before-init-time)))))
 
 (provide 'editor-basic)
 ;;; editor-basic.el ends here
