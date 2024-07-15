@@ -4,9 +4,12 @@
 
 (defvar my/treesit-remap-langs nil)
 
+(defun my/treesit-available-p()
+  (and (fboundp 'treesit-available-p)
+	   (treesit-available-p)))
+
 (use-package treesit
-  :when (and (fboundp 'treesit-available-p)
-	         (treesit-available-p))
+  :when (my/treesit-available-p)
   :init
   (setq treesit-font-lock-level 4)
   (add-to-list 'treesit-extra-load-path

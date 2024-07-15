@@ -11,6 +11,9 @@
   :ensure t
   :mode ("\\.ejs\\'" "\\.njk\\'" "\\.html?\\'")
   :config
+  (setq-default web-mode-markup-indent-offset 2
+                web-mode-css-indent-offset 2
+                web-mode-code-indent-offset 2)
   (dolist (param '(("lineup-args" . nil)
                    ("lineup-calls" . nil)
                    ("lineup-concats" . nil)

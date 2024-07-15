@@ -12,10 +12,10 @@
   (setq-default js-indent-level 2)
   (add-to-list 'my/treesit-remap-langs "js"))
 
-(use-package typescript-mode
-  :ensure t
-  :init
-  (add-to-list 'my/treesit-remap-langs "typescript"))
+(unless (my/treesit-available-p)
+  (use-package typescript-mode
+    :ensure t
+    :mode ("\\.ts[x]\\'" . typescript-mode)))
 
 (use-package prettier-js
   :ensure t
