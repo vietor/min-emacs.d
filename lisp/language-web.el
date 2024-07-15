@@ -4,6 +4,7 @@
 
 ;; CSS
 (setq-default css-fontify-colors nil)
+(add-to-list 'my/treesit-remap-langs "css")
 
 ;; HTML
 (use-package web-mode

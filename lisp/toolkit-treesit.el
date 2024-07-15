@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(defvar my/treesit-active-langs nil)
+(defvar my/treesit-remap-langs nil)
 
 (use-package treesit
   :when (and (fboundp 'treesit-available-p)
@@ -30,7 +30,7 @@
         (add-to-list 'major-mode-remap-alist (cons non-ts-mode ts-mode)))))
 
   (defun my/treesit-auto-configure()
-    (dolist (lang my/treesit-active-langs)
+    (dolist (lang my/treesit-remap-langs)
       (when (my/treesit-lang-p lang)
 	    (my/treesit-lang-remap lang)
 	    (let ((extra-lang (cdr (assoc-string lang my/treesit-lang-to-extra))))

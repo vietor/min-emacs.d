@@ -10,12 +10,12 @@
                ("M-." . nil)))
   :init
   (setq-default js-indent-level 2)
-  (add-to-list 'my/treesit-active-langs "js"))
+  (add-to-list 'my/treesit-remap-langs "js"))
 
 (use-package typescript-mode
   :ensure t
   :init
-  (add-to-list 'my/treesit-active-langs "typescript"))
+  (add-to-list 'my/treesit-remap-langs "typescript"))
 
 (use-package prettier-js
   :ensure t

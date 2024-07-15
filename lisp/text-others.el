@@ -10,13 +10,13 @@
 (use-package yaml-mode
   :ensure t
   :init
-  (add-to-list 'my/treesit-active-langs "yaml"))
+  (add-to-list 'my/treesit-remap-langs "yaml"))
 
 ;; JSON
 (use-package json-mode
   :ensure t
   :init
-  (add-to-list 'my/treesit-active-langs "json")
+  (add-to-list 'my/treesit-remap-langs "json")
 
   (defun my/json-formatter-beautify ()
     (call-interactively 'json-mode-beautify))

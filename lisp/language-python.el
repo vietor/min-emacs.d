@@ -7,7 +7,7 @@
          (python-ts-mode . eglot-ensure))
   :init
   (setq python-shell-interpreter "python3")
-  (add-to-list 'my/treesit-active-langs "python"))
+  (add-to-list 'my/treesit-remap-langs "python"))
 
 (use-package pip-requirements
   :ensure t)

@@ -5,8 +5,8 @@
 (use-package cc-mode
   :when (executable-find "clangd")
   :init
-  (add-to-list 'my/treesit-active-langs "c")
-  (add-to-list 'my/treesit-active-langs "c++")
+  (add-to-list 'my/treesit-remap-langs "c")
+  (add-to-list 'my/treesit-remap-langs "c++")
 
   (dolist (hook '(c-mode-hook
                   c++-mode-hook
