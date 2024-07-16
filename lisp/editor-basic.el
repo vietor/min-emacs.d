@@ -8,8 +8,7 @@
 (bind-key "M-g f r" 'rename-visited-file)
 
 ;; Clean starup screen
-(setq inhibit-default-init t
-      inhibit-startup-screen t
+(setq inhibit-startup-screen t
       initial-scratch-message nil
       frame-title-format
       '((:eval (if (buffer-file-name)
@@ -86,6 +85,9 @@
               (setq tab-width c-basic-offset))))
 
 ;; Better scroll behavior
+(setq jit-lock-defer-time 0
+      fast-but-imprecise-scrolling t
+      redisplay-skip-fontification-on-input t)
 (setq-default scroll-preserve-screen-position 'always)
 (when (fboundp 'pixel-scroll-precision-mode)
   (pixel-scroll-precision-mode))
