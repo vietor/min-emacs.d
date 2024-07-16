@@ -30,6 +30,7 @@
               indicate-empty-lines nil
               indicate-buffer-boundaries nil
               sentence-end-double-space nil
+              tab-bar-show nil
               bidi-display-reordering nil)
 
 ;; Better cursor
@@ -109,7 +110,7 @@
 
 ;; Active recent file history
 (bind-key "M-g f l" 'recentf-open)
-(setq-default recentf-max-saved-items 1000
+(setq-default recentf-max-saved-items 300
               recentf-exclude `("/tmp/" "/ssh:"))
 (add-hook 'after-init-hook 'recentf-mode)
 

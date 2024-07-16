@@ -17,8 +17,6 @@
   (scroll-bar-mode -1))
 (when (fboundp 'horizontal-scroll-bar-mode)
   (horizontal-scroll-bar-mode -1))
-(when (fboundp 'set-scroll-bar-mode)
-  (set-scroll-bar-mode nil))
 
 ;; Better process performance
 (setq read-process-output-max (* 4 1024 1024)

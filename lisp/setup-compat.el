@@ -17,6 +17,11 @@
         (set-visited-file-name new-name)
         (rename-buffer new-name)))))
 
+(unless (fboundp 'recentf-open)
+  (defun recentf-open()
+    (interactive)
+    (find-file (completing-read "Open recent file: " recentf-list))))
+
 ;;; Platform hooks
 
 (when (eq system-type 'windows-nt)
