@@ -22,6 +22,7 @@
 (put 'upcase-region 'disabled nil)
 
 (setq use-short-answers t
+      confirm-kill-processes nil
       initial-major-mode 'fundamental-mode)
 (setq-default case-fold-search t
               column-number-mode t
@@ -56,7 +57,7 @@
 (when (fboundp 'global-eldoc-mode)
   (add-hook 'after-init-hook 'global-eldoc-mode))
 
-;; Disable line numbers
+;; Display line numbers
 (when (fboundp 'display-line-numbers-mode)
   (setq-default display-line-numbers-width 3)
   (add-hook 'prog-mode-hook 'display-line-numbers-mode))

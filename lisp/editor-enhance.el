@@ -33,6 +33,12 @@
         uniquify-after-kill-buffer-p t
         uniquify-ignore-buffers-re "^\\*"))
 
+;; Better dired behavior
+(use-package dired
+  :init
+  (setq-default dired-dwim-target t
+                dired-kill-when-opening-new-dired-buffer t))
+
 ;; Better `list-buffers'
 
 (use-package ibuffer

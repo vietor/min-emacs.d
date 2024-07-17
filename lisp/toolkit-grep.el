@@ -6,7 +6,7 @@
 (use-package grep
   :init
   (setq-default grep-highlight-matches t
-		grep-scroll-output t))
+		        grep-scroll-output t))
 
 ;; wgrep
 (use-package wgrep
