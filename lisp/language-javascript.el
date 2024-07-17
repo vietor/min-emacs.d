@@ -28,5 +28,14 @@
                     (typescript-ts-mode . prettier-js)))
     (add-to-list 'my/formatter-beautify-alist entity)))
 
+(when (executable-find "typescript-language-server")
+  (dolist (hook '(js-mode-hook
+                  js-ts-mode-hook
+                  tsx-ts-mode-hook
+                  typescript-ts-mode-hook
+                  typescript-mode-hook))
+    (add-hook hook 'eglot-ensure))
+  (add-to-list 'my/eglot-language-alias-key '("typescript" . "javascript")))
+
 (provide 'language-javascript)
 ;;; language-javascript.el ends here

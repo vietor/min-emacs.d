@@ -7,6 +7,8 @@
               ("M-n" . flymake-goto-next-error)
               ("M-p" . flymake-goto-prev-error)))
 
+(defvar my/eglot-language-alias-key nil)
+
 (use-package eglot
   :ensure t
   :demand t
@@ -49,36 +51,32 @@
   (dolist (type '(eglot-note eglot-warning eglot-error))
     (cl-remf (symbol-plist type) 'flymake-overlay-control))
 
-  (defun my/eglot--language-id (server)
-    (string-remove-suffix "-ts"
-                          (if (fboundp 'eglot--language-id)
-                              (eglot--language-id server)
-                            ;; Use first language
-                            (car (eglot--language-ids server)))))
-
-  (defun my/eglot--language-etc-path (&optional file)
-    (expand-file-name (concat "etc/" (or file "")) user-emacs-directory))
-
-  (defun my/eglot--language-etc-url (&optional file)
-    (concat "file://" (if (eq system-type 'windows-nt) "/") (my/eglot--language-etc-path file)))
+  (defun my/eglot--language-key (server)
+    (let* ((language-id (if (fboundp 'eglot--language-id)
+                            (eglot--language-id server)
+                          (car (eglot--language-ids server))))
+           (language-key (replace-regexp-in-string "\\(-ts\\|react\\)$" "" language-id t t)))
+      (or (cdr (assoc-string language-key my/eglot-language-alias-key)) language-key)))
 
   (defun my/eglot--language-etc-json-read (file)
     (ignore-errors
-      (with-temp-buffer
-        (insert-file-contents (my/eglot--language-etc-path file))
-        (goto-char (point-min))
-        (when (search-forward "{{ETC-" nil t)
-          (replace-string "{{ETC-PATH}}" (my/eglot--language-etc-path))
+      (let ((file-path (expand-file-name (concat "etc/" file) user-emacs-directory))
+            (etc-url (concat "file://"
+                             (if (eq system-type 'windows-nt) "/")
+                             (expand-file-name "etc/" user-emacs-directory))))
+        (with-temp-buffer
+          (insert-file-contents file-path)
           (goto-char (point-min))
-          (replace-string "{{ETC-URL}}" (my/eglot--language-etc-url)))
-        (goto-char (point-min))
-        (json-parse-buffer :object-type 'plist :false-object :json-false))))
+          (while (search-forward "{{ETC-URL}}" nil t)
+            (replace-match etc-url t t))
+          (goto-char (point-min))
+          (json-parse-buffer :object-type 'plist :false-object :json-false)))))
 
   ;; Custom language workspace configuration
   (defun my/eglot--workspace-configuration (server)
-    (let* ((language-id (my/eglot--language-id server))
-           (settings-file (concat "lsp-" language-id "-settings.json")))
-      (or (my/eglot--language-etc-json-read settings-file) ())))
+    (or (my/eglot--language-etc-json-read
+         (concat "lsp-" (my/eglot--language-key server) "-settings.json"))
+        ()))
   (setq-default eglot-workspace-configuration 'my/eglot--workspace-configuration))
 
 (provide 'framework-eglot)
