@@ -61,14 +61,14 @@
   (defun my/eglot--language-etc-json-read (file)
     (ignore-errors
       (let ((file-path (expand-file-name (concat "etc/" file) user-emacs-directory))
-            (etc-url (concat "file://"
+            (base-url (concat "file://"
                              (if (eq system-type 'windows-nt) "/")
-                             (expand-file-name "etc/" user-emacs-directory))))
+                             (expand-file-name "etc" user-emacs-directory))))
         (with-temp-buffer
           (insert-file-contents file-path)
           (goto-char (point-min))
-          (while (search-forward "{{ETC-URL}}" nil t)
-            (replace-match etc-url t t))
+          (while (search-forward "{{BASE-URL}}" nil t)
+            (replace-match base-url t t))
           (goto-char (point-min))
           (json-parse-buffer :object-type 'plist :false-object :json-false)))))
 
