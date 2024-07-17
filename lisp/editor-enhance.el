@@ -6,12 +6,10 @@
 
 (if (not window-system)
     (load-theme 'tango-dark)
-  (use-package doom-themes
+  (use-package monokai-theme
     :ensure t
     :config
-    (setq doom-themes-enable-bold t
-          doom-themes-enable-italic t)
-    (load-theme 'doom-monokai-pro t)))
+    (load-theme 'monokai t)))
 
 ;; Diminish `abbrev'
 (use-package abbrev
