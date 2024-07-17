@@ -5,7 +5,7 @@
         "enabled": false
       },
       "settings": {
-        "url": "{{BASE-URL}}/eclipse-java-google-style.xml"
+        "url": "{{BASE-URL}}/java/eclipse-java-google-style.xml"
       }
     }
   }
