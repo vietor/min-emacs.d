@@ -20,7 +20,9 @@
 
   (defun my/json-formatter-beautify ()
     (call-interactively 'json-mode-beautify))
-  (add-to-list 'my/formatter-beautify-alist '(json-mode . my/json-formatter-beautify)))
+  (dolist (entity '((json-mode . my/json-formatter-beautify)
+                    (json-ts-mode . my/json-formatter-beautify)))
+    (add-to-list 'my/formatter-beautify-alist entity)))
 
 ;; XML
 (use-package nxml-mode
@@ -30,7 +32,7 @@
   (defun my/nxml-formatter-beautify (begin end)
     (interactive "r")
     (unless (use-region-p)
-      (setq beg (point-min)
+      (setq begin (point-min)
             end (point-max)))
     (save-excursion
       (goto-char begin)
