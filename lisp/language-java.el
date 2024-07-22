@@ -20,6 +20,28 @@
                                        arguments)
     (mapc #'eglot--apply-workspace-edit arguments))
 
+  (cl-defmethod eglot-initialization-options ((_server eglot-eclipse-jdt))
+    `(:extendedClientCapabilities (:classFileContentsSupport t)))
+
+  (defun my/eclipse-jdt--uri-to-path (fn uri)
+    (if (not (string-match "jdt://contents/\\(.*?\\)/\\(.*\\)\.class\\?" uri))
+        (funcall fn uri)
+      (let* ((source-file (format "%s.java" (replace-regexp-in-string "/" "." (match-string 2 uri) t t)))
+             (source-location (concat user-emacs-space-directory "jdt.source-caches/" source-file))
+             (cache-directory (file-name-directory source-location)))
+        (unless (file-readable-p source-location)
+          (unless (file-directory-p cache-directory)
+            (make-directory cache-directory t))
+          (let ((content (jsonrpc-request (eglot--current-server-or-lose)
+                                          :java/classFileContents (list :uri uri))))
+            (with-temp-file source-location
+              (insert content)
+              (my/eglot--text-clean-eol))
+            (with-temp-file (format "%s.%s.metadata" cache-directory (file-name-base source-location))
+              (insert uri))))
+        source-location)))
+  (advice-add 'eglot--uri-to-path :around #'my/eclipse-jdt--uri-to-path)
+
   (defun my/eclipse-jdt--found (directory match-regexp &optional default-file)
     (or (ignore-errors
           (car (last (directory-files directory t match-regexp))))

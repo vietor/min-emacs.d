@@ -18,13 +18,13 @@
               ("C-c C-r" . eglot-reconnect))
   :init
   ;; Fix windows-nt EOL
-  (when (eq system-type 'windows-nt)
-    (defun my/eglot--text-clean-eol(&rest args)
+  (defun my/eglot--text-clean-eol(&rest args)
+    (when (eq system-type 'windows-nt)
       (save-excursion
 	    (goto-char (point-min))
 	    (while (re-search-forward "\r+$" nil t)
-	      (replace-match "" t t))))
-    (advice-add #'eglot--apply-text-edits :after #'my/eglot--text-clean-eol))
+	      (replace-match "" t t)))))
+  (advice-add #'eglot--apply-text-edits :after #'my/eglot--text-clean-eol)
 
   (add-to-list 'my/formatter-beautify-minor-alist
                '(eglot--managed-mode . eglot-format-buffer))
@@ -41,7 +41,6 @@
                                                     :colorProvider
                                                     :codeLensProvider
                                                     :inlayHintProvider
-                                                    :signatureHelpProvider
                                                     :foldingRangeProvider
                                                     :documentLinkProvider
                                                     :documentHighlightProvider
@@ -62,8 +61,8 @@
     (ignore-errors
       (let ((file-path (expand-file-name (concat "etc/" file) user-emacs-directory))
             (base-url (concat "file://"
-                             (if (eq system-type 'windows-nt) "/")
-                             (expand-file-name "etc" user-emacs-directory))))
+                              (if (eq system-type 'windows-nt) "/")
+                              (expand-file-name "etc" user-emacs-directory))))
         (with-temp-buffer
           (insert-file-contents file-path)
           (goto-char (point-min))
