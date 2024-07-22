@@ -23,12 +23,12 @@
   (cl-defmethod eglot-initialization-options ((_server eglot-eclipse-jdt))
     `(:extendedClientCapabilities (:classFileContentsSupport t)))
 
-  (defun my/eclipse-jdt--uri-to-path (fn uri)
-    (if (not (string-match "jdt://contents/\\(.*\\)\.class\\?" uri))
-        (funcall fn uri)
-      (let* ((source-file (concat user-emacs-space-directory
-                                  "eclipse.caches/"
-                                  (format "/%s.java" (match-string 1 uri))))
+  (defun my/eclipse-jdt--uri-to-path (orig-fn uri)
+    (when (keywordp uri)
+      (setq uri (substring (symbol-name uri) 1)))
+    (if (not (string-match "jdt://contents/\\(.*\\)\\.class\\?" uri))
+        (funcall orig-fn uri)
+      (let* ((source-file (concat user-emacs-space-directory "eclipse.caches/" (match-string 1 uri) ".java"))
              (source-directory (file-name-directory source-file)))
         (unless (file-readable-p source-file)
           (unless (file-directory-p source-directory)
