@@ -23,18 +23,21 @@
   (cl-defmethod eglot-initialization-options ((_server eglot-eclipse-jdt))
     `(:extendedClientCapabilities (:classFileContentsSupport t)))
 
+  (defconst my/eclipse-jdt--cache-dir
+    (concat user-emacs-space-directory "eclipse.caches/"))
+
   (defun my/eclipse-jdt--uri-to-path (orig-fn uri)
     (when (keywordp uri)
       (setq uri (substring (symbol-name uri) 1)))
     (if (not (string-match "jdt://contents/\\(.*\\)\\.class\\?" uri))
         (funcall orig-fn uri)
-      (let* ((source-file (concat user-emacs-space-directory "eclipse.caches/" (match-string 1 uri) ".java"))
+      (let* ((source-file (concat my/eclipse-jdt--cache-dir (match-string 1 uri) ".java"))
              (source-directory (file-name-directory source-file)))
         (unless (file-readable-p source-file)
-          (unless (file-directory-p source-directory)
-            (make-directory source-directory t))
           (let ((content (jsonrpc-request (eglot--current-server-or-lose)
                                           :java/classFileContents (list :uri uri))))
+            (unless (file-directory-p source-directory)
+              (make-directory source-directory t))
             (with-temp-file source-file
               (insert content)
               (my/eglot--text-clean-eol))))
@@ -48,6 +51,12 @@
             nil
           (expand-file-name default-file directory))))
 
+  (defun my/eclipse-jdt--workspace()
+    (let ((project-dir (project-root (eglot--current-project))))
+      (concat (car (last (split-string project-dir "/") 2))
+              "@"
+              (md5 project-dir))))
+
   (defun my/eclipse-jdt--contact (interactive)
     (let* ((install-dir
             (my/eclipse-jdt--found user-emacs-space-directory "jdt-language-server-*" "eclipse.jdt.ls"))
@@ -57,20 +66,20 @@
                                     (t "config_linux"))
                               install-dir))
            (workspace-dir
-            (expand-file-name (sha1 (project-root (eglot--current-project)))
+            (expand-file-name (my/eclipse-jdt--workspace)
                               (concat user-emacs-space-directory "eclipse.workspaces")))
            (launcher-jar nil)
            (lombok-jar nil)
            (runtime-jdt-vmargs '("-Xmx1G")))
 
       (unless (file-directory-p install-dir)
-        (error "Not found 'eclipse.jdt.ls' directory in '%s'" user-emacs-space-directory))
+        (eglot--error "Not found 'eclipse.jdt.ls' directory in '%s'" user-emacs-space-directory))
 
       (setq launcher-jar
             (my/eclipse-jdt--found (expand-file-name "plugins" install-dir)
                                    "org\\.eclipse\\.equinox\\.launcher_.*\\.jar$"))
       (unless (and launcher-jar (file-exists-p launcher-jar))
-        (error "Not found 'eclipse.jdt.ls' launcher jar"))
+        (eglot--error "Not found 'eclipse.jdt.ls' launcher jar"))
 
       (setq lombok-jar
             (my/eclipse-jdt--found (concat user-emacs-space-directory "eclipse.assists")
