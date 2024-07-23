@@ -12,6 +12,12 @@
   :hook ((java-mode . eglot-ensure)
          (java-ts-mode . eglot-ensure))
   :init
+  (defconst my/eclipse-jdt--cache-dir
+    (concat user-emacs-space-directory "eclipse.caches/"))
+
+  (add-to-list 'my/treesit-remap-langs "java")
+  (add-to-list 'recentf-exclude my/eclipse-jdt--cache-dir)
+
   (defclass eglot-eclipse-jdt (eglot-lsp-server) ()
     :documentation "Eclipse's Java Development Tools Language Server.")
 
@@ -22,9 +28,6 @@
 
   (cl-defmethod eglot-initialization-options ((_server eglot-eclipse-jdt))
     `(:extendedClientCapabilities (:classFileContentsSupport t)))
-
-  (defconst my/eclipse-jdt--cache-dir
-    (concat user-emacs-space-directory "eclipse.caches/"))
 
   (defun my/eclipse-jdt--uri-to-path (orig-fn uri)
     (when (keywordp uri)
@@ -104,8 +107,6 @@
                                  ,@runtime-jdt-vmargs
                                  "-jar" ,launcher-jar
                                  "-data" ,workspace-dir))))
-
-  (add-to-list 'my/treesit-remap-langs "java")
   (add-to-list 'eglot-server-programs '((java-mode java-ts-mode) . my/eclipse-jdt--contact)))
 
 (provide 'language-java)
