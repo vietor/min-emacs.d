@@ -9,14 +9,20 @@
 
 (use-package java
   :when (executable-find "java")
-  :hook ((java-mode . eglot-ensure)
-         (java-ts-mode . eglot-ensure))
+  :hook ((java-mode . my/eglot-java-ensure)
+         (java-ts-mode . my/eglot-java-ensure))
   :init
   (defconst my/eclipse-jdt--cache-dir
     (concat user-emacs-space-directory "eclipse.caches/"))
 
   (add-to-list 'my/treesit-remap-langs "java")
   (add-to-list 'recentf-exclude my/eclipse-jdt--cache-dir)
+
+  (defun my/eglot-java-ensure ()
+    (if (string-prefix-p my/eclipse-jdt--cache-dir
+                         (buffer-file-name))
+        (read-only-mode)
+      (eglot-ensure)))
 
   (defclass eglot-eclipse-jdt (eglot-lsp-server) ()
     :documentation "Eclipse's Java Development Tools Language Server.")
