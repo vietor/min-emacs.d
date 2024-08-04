@@ -19,6 +19,7 @@
   (add-to-list 'recentf-exclude my/eclipse-jdt--cache-dir)
 
   (defun my/eglot-java-ensure ()
+    (setq fill-column 100)
     (if (string-prefix-p my/eclipse-jdt--cache-dir
                          (buffer-file-name))
         (read-only-mode)
