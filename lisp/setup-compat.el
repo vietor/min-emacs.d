@@ -27,8 +27,7 @@
 (when (eq system-type 'windows-nt)
   (setq w32-pipe-read-delay 0
         w32-pipe-buffer-size (* 64 1024)
-        w32-get-true-file-attributes nil
-        inhibit-compacting-font-caches t))
+        w32-get-true-file-attributes nil))
 
 (when (eq system-type 'darwin)
   (setq ns-pop-up-frames nil

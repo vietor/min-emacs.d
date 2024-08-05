@@ -26,6 +26,8 @@
                             "Segoe UI Emoji"))
   (my/try-set-font 'han '("PingFang SC"
                           "Microsoft Yahei UI")))
+
+(setq inhibit-compacting-font-caches t)
 (add-hook 'window-setup-hook #'my/setup-better-fonts)
 (add-hook 'server-after-make-frame-hook #'my/setup-better-fonts)
 
