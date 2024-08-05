@@ -5,7 +5,9 @@
 (use-package flymake
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
-              ("M-p" . flymake-goto-prev-error)))
+              ("M-p" . flymake-goto-prev-error))
+  :config
+  (setq-default flymake-mode-line-lighter "🪰"))
 
 (defvar my/eglot-language-alias-key nil)
 
