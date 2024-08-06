@@ -32,7 +32,8 @@
                '(eglot--managed-mode . eglot-format-buffer))
 
   :config
-  (setq-default eglot-autoshutdown t
+  (setq-default eglot-menu-string "♿"
+                eglot-autoshutdown t
                 eglot-sync-connect 1
                 eglot-connect-timeout 60
                 eglot-events-buffer-size 0

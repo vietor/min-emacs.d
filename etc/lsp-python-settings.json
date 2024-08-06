@@ -7,9 +7,6 @@
       "flake8": {
         "enabled": true
       },
-      "mypy": {
-        "enabled": true
-      },
       "mccabe": {
         "enabled": false
       },
