@@ -53,16 +53,6 @@
 (when (fboundp 'electric-pair-mode)
   (add-hook 'after-init-hook 'electric-pair-mode))
 
-;; Display column boundaries
-(setq-default fill-column 80)
-(when (boundp 'display-fill-column-indicator)
-  (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode))
-
-;; Display line numbers
-(when (fboundp 'display-line-numbers-mode)
-  (setq-default display-line-numbers-width 3)
-  (add-hook 'prog-mode-hook 'display-line-numbers-mode))
-
 ;; Disable file lock & backup
 (setq create-lockfiles nil
       make-backup-files nil

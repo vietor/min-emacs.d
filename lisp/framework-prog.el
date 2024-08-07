@@ -2,6 +2,17 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Display column boundaries
+(setq-default fill-column 80)
+(when (boundp 'display-fill-column-indicator)
+  (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode))
+
+;; Display line numbers
+(when (fboundp 'display-line-numbers-mode)
+  (setq-default display-line-numbers-width 3)
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode))
+
+;; Fixup `tab-with' in c mode
 (defun my/fixup-c-style-tab-width()
   (when indent-tabs-mode
     (setq tab-width c-basic-offset)))
