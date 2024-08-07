@@ -97,7 +97,7 @@
       redisplay-skip-fontification-on-input t)
 (setq-default scroll-preserve-screen-position 'always)
 (when (fboundp 'pixel-scroll-precision-mode)
-  (pixel-scroll-precision-mode))
+  (add-hook 'after-init-hook 'pixel-scroll-precision-mode))
 
 ;; Better mouse behavior
 (when window-system

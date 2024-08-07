@@ -41,11 +41,8 @@
                 eglot-send-changes-idle-time 0.75
                 eglot-confirm-server-initiated-edits nil
                 eglot-ignored-server-capabilities '(:hoverProvider
-                                                    :colorProvider
                                                     :codeLensProvider
                                                     :inlayHintProvider
-                                                    :foldingRangeProvider
-                                                    :documentLinkProvider
                                                     :documentHighlightProvider
                                                     :documentOnTypeFormattingProvider))
 
