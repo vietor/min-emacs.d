@@ -53,10 +53,6 @@
 (when (fboundp 'electric-pair-mode)
   (add-hook 'after-init-hook 'electric-pair-mode))
 
-;; Active eldoc
-(when (fboundp 'global-eldoc-mode)
-  (add-hook 'after-init-hook 'global-eldoc-mode))
-
 ;; Display column boundaries
 (setq-default fill-column 80)
 (when (boundp 'display-fill-column-indicator)
@@ -86,10 +82,6 @@
               standard-indent 4
               indent-tabs-mode nil)
 (add-hook 'after-init-hook 'electric-indent-mode)
-(add-hook 'c-mode-common-hook
-          (lambda()
-            (when indent-tabs-mode
-              (setq tab-width c-basic-offset))))
 
 ;; Better scroll behavior
 (setq jit-lock-defer-time 0

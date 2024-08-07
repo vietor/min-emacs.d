@@ -2,13 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package flymake
-  :bind (:map flymake-mode-map
-              ("M-n" . flymake-goto-next-error)
-              ("M-p" . flymake-goto-prev-error))
-  :config
-  (setq-default flymake-mode-line-lighter "🪰"))
-
 (defvar my/eglot-language-alias-key nil)
 
 (use-package eglot
@@ -34,11 +27,7 @@
   :config
   (setq-default eglot-menu-string "♿"
                 eglot-autoshutdown t
-                eglot-sync-connect 1
-                eglot-connect-timeout 60
                 eglot-events-buffer-size 0
-                eglot-autoreconnect 1
-                eglot-send-changes-idle-time 0.75
                 eglot-confirm-server-initiated-edits nil
                 eglot-ignored-server-capabilities '(:hoverProvider
                                                     :codeLensProvider

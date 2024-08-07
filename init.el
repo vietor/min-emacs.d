@@ -37,6 +37,7 @@
 (require 'toolkit-formatter)
 (require 'toolkit-treesit)
 
+(require 'framework-prog)
 (require 'framework-eglot)
 
 (require 'language-cpp)
