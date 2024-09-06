@@ -1,4 +1,4 @@
-;e;; language-others.el --- -*- lexical-binding: t -*-
+;;; language-others.el --- -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -13,8 +13,9 @@
   :ensure t
   :when (executable-find "rust-analyzer")
   :hook (rust-mode . eglot-ensure)
-  :config
-  (setq rust-format-on-save t))
+  :init
+  (setq rust-format-on-save t
+        rust-mode-treesitter-derive (my/treesit-available-p)))
 
 (provide 'language-others)
 ;;; language-others.el ends here
