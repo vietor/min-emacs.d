@@ -83,8 +83,8 @@
          ("C-<" . mc/mark-previous-like-this)
          ("C-M->" . mc/skip-to-next-like-this)
          ("C-M-<" .  mc/skip-to-previous-like-this)
-         ("M-<down-mouse-1>" . nil)
-         ("M-<mouse-1>" . mc/add-cursor-on-click))
+         ("C-<down-mouse-1>" . nil)
+         ("C-<mouse-1>" . mc/add-cursor-on-click))
   :init
   (defun mc/save-lists () "Ignore save history."))
 
