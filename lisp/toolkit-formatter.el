@@ -33,7 +33,7 @@
       (set-window-start (selected-window) w-start))))
 
 (bind-key "<f12>" 'my/formatter-indent)
-(bind-key "C-<f12>" 'my/formatter-beautify)
+(bind-key "M-<f12>" 'my/formatter-beautify)
 
 (provide 'toolkit-formatter)
 ;;; toolkit-formatter.el ends here

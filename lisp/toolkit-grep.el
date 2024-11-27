@@ -21,7 +21,8 @@
   :diminish
   :when (executable-find "global")
   :config
-  (setq agtags-global-treat-text t)
+  (setq-default agtags-key-prefix "M-g t"
+                agtags-global-treat-text t)
   (dolist (file agtags-created-tag-files)
     (add-to-list 'grep-find-ignored-files file))
 
