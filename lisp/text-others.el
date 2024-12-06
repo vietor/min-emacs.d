@@ -47,5 +47,9 @@
         (indent-region begin end nil))))
   (add-to-list 'my/formatter-beautify-alist '(nxml-mode . my/nxml-formatter-beautify)))
 
+;; Treesit
+(when (my/treesit-available-p)
+  (use-package dockerfile-ts-mode))
+
 (provide 'text-others)
 ;;; text-others.el ends here

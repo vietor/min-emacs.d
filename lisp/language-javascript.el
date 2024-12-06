@@ -12,7 +12,8 @@
   (setq-default js-indent-level 2)
   (add-to-list 'my/treesit-remap-langs "js"))
 
-(unless (my/treesit-available-p)
+(if (my/treesit-available-p)
+    (use-package typescript-ts-mode)
   (use-package typescript-mode
     :ensure t
     :mode ("\\.ts[x]\\'" . typescript-mode)))

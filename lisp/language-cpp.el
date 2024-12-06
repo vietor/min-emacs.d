@@ -14,5 +14,8 @@
                   c++-ts-mode-hook))
     (add-hook hook 'eglot-ensure)))
 
+(when (my/treesit-available-p)
+  (use-package cmake-ts-mode))
+
 (provide 'language-cpp)
 ;;; language-cpp.el ends here
