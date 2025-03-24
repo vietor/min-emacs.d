@@ -17,5 +17,10 @@
   (setq rust-format-on-save t
         rust-mode-treesitter-derive (my/treesit-available-p)))
 
+(use-package dart-mode
+  :ensure t
+  :when (executable-find "dart")
+  :hook (dart-mode . eglot-ensure))
+
 (provide 'language-others)
 ;;; language-others.el ends here
