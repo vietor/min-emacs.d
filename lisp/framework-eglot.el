@@ -63,7 +63,7 @@
   ;; Custom language workspace configuration
   (defun my/eglot--workspace-configuration (server)
     (or (my/eglot--language-etc-json-read
-         (concat "lsp-" (my/eglot--language-key server) "-settings.json"))
+         (concat "lsp-" (my/eglot--language-key server) "-workspace.json"))
         ()))
   (setq-default eglot-workspace-configuration 'my/eglot--workspace-configuration))
 
