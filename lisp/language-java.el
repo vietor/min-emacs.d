@@ -36,23 +36,25 @@
   (cl-defmethod eglot-initialization-options ((_server eglot-eclipse-jdt))
     `(:extendedClientCapabilities (:classFileContentsSupport t)))
 
-  (defun my/eclipse-jdt--uri-to-path (orig-fn uri)
-    (when (keywordp uri)
-      (setq uri (substring (symbol-name uri) 1)))
-    (if (not (string-match "jdt://contents/\\(.*\\)\\.class\\?" uri))
-        (funcall orig-fn uri)
-      (let* ((source-file (concat my/eclipse-jdt--cache-dir (match-string 1 uri) ".java"))
-             (source-directory (file-name-directory source-file)))
-        (unless (file-readable-p source-file)
-          (let ((content (jsonrpc-request (eglot--current-server-or-lose)
-                                          :java/classFileContents (list :uri uri))))
-            (unless (file-directory-p source-directory)
-              (make-directory source-directory t))
-            (with-temp-file source-file
-              (insert content)
-              (my/eglot--text-clean-eol))))
-        source-file)))
-  (advice-add 'eglot--uri-to-path :around #'my/eclipse-jdt--uri-to-path)
+  (defun my/eclipse-jdt--uri-handler(_operation &rest args)
+    (let* ((uri (car args))
+           (source-file
+            (concat
+             my/eclipse-jdt--cache-dir
+             (save-match-data
+               (when (string-match "jdt://contents/\\(.*\\)\\.class\\?" uri)
+                 (concat (match-string 1 uri) ".java")))))
+           (source-directory (file-name-directory source-file)))
+      (unless (file-readable-p source-file)
+        (let ((content (jsonrpc-request (eglot--current-server-or-lose)
+                                        :java/classFileContents (list :uri uri))))
+          (unless (file-directory-p source-directory)
+            (make-directory source-directory t))
+          (with-temp-file source-file
+            (insert content)
+            (my/eglot--text-clean-eol))))
+      source-file))
+  (add-to-list 'file-name-handler-alist '("\\`jdt://" . my/eclipse-jdt--uri-handler))
 
   (defun my/eclipse-jdt--found (directory match-regexp &optional default-file)
     (or (ignore-errors
