@@ -3,6 +3,7 @@
 ;;; Code:
 
 (defvar my/eglot-language-alias-key nil)
+(defvar my/eglot-language-ignore-modes nil)
 
 (use-package eglot
   :ensure t
@@ -38,6 +39,13 @@
   ;; Remove control link
   (dolist (type '(eglot-note eglot-warning eglot-error))
     (cl-remf (symbol-plist type) 'flymake-overlay-control))
+
+  ;; Advice for ignore *-mode
+  (defun my/eglot-current-server (orig-fn)
+    (if (derived-mode-p my/eglot-language-ignore-modes)
+        (setq eglot--cached-server nil)
+      (funcall orig-fn)))
+  (advice-add 'eglot-current-server :around #'my/eglot-current-server)
 
   (defun my/eglot--language-key (server)
     (let* ((language-id (if (fboundp 'eglot--language-id)

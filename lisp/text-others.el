@@ -12,18 +12,6 @@
   :init
   (add-to-list 'my/treesit-remap-langs "yaml"))
 
-;; JSON
-(use-package json-mode
-  :ensure t
-  :init
-  (add-to-list 'my/treesit-remap-langs "json")
-
-  (defun my/json-formatter-beautify ()
-    (call-interactively 'json-mode-beautify))
-  (dolist (entity '((json-mode . my/json-formatter-beautify)
-                    (json-ts-mode . my/json-formatter-beautify)))
-    (add-to-list 'my/formatter-beautify-alist entity)))
-
 ;; XML
 (use-package nxml-mode
   :init
