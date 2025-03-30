@@ -1,4 +1,4 @@
-;;; text-others.el --- -*- lexical-binding: t -*-
+;;; language-texts.el --- -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -39,5 +39,5 @@
 (when (my/treesit-available-p)
   (use-package dockerfile-ts-mode))
 
-(provide 'text-others)
-;;; text-others.el ends here
+(provide 'language-texts)
+;;; language-texts.el ends here

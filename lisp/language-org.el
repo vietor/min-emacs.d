@@ -1,4 +1,4 @@
-;;; text-org.el --- -*- lexical-binding: t -*-
+;;; language-org.el --- -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -13,5 +13,5 @@
   :config
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
-(provide 'text-org)
-;;; text-org.el ends here
+(provide 'language-org)
+;;; language-org.el ends here

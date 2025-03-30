@@ -45,10 +45,10 @@
 (require 'language-python)
 (require 'language-javascript)
 (require 'language-web)
-(require 'language-others)
+(require 'language-org)
 
-(require 'text-org)
-(require 'text-others)
+(require 'language-progs)
+(require 'language-texts)
 
 ;; Load custom configurations
 (when (file-exists-p custom-file)

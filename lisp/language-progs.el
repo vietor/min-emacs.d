@@ -1,4 +1,4 @@
-;;; language-others.el --- -*- lexical-binding: t -*-
+;;; language-progs.el --- -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -22,5 +22,5 @@
   :when (executable-find "dart")
   :hook (dart-mode . eglot-ensure))
 
-(provide 'language-others)
-;;; language-others.el ends here
+(provide 'language-progs)
+;;; language-progs.el ends here
