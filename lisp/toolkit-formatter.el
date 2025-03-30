@@ -11,20 +11,22 @@
     (interactive)
     (let* ((ext (file-name-extension buffer-file-name t))
            (bufferfile (make-temp-file "prettier" nil ext))
-           (outputfile (make-temp-file "prettier" nil ext))
+           (outputbuf (get-buffer-create "*prettier output*"))
            (coding-system-for-read 'utf-8)
            (coding-system-for-write 'utf-8))
       (unwind-protect
           (save-restriction
             (widen)
             (write-region nil nil bufferfile)
+            (with-current-buffer outputbuf
+              (erase-buffer))
             (when (zerop (apply 'call-process
-                                "prettier" bufferfile (list (list :file outputfile) nil)
+                                "prettier" bufferfile (list outputbuf nil)
                                 nil (list "--stdin-filepath" buffer-file-name)))
-              (insert-file-contents outputfile nil nil nil t)
+              (buffer-swap-text outputbuf)
               (message "Applied prettier successed")))
-        (delete-file bufferfile)
-        (delete-file outputfile)))))
+        (kill-buffer outputbuf)
+        (delete-file bufferfile)))))
 
 (defun my/formatter-indent ()
   "Reformat current buffer by indent."
