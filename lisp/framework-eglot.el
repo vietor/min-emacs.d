@@ -3,6 +3,7 @@
 ;;; Code:
 
 (defvar my/eglot-language-alias-key nil)
+(defvar my/eglot-language-auto-modes nil)
 (defvar my/eglot-language-ignore-modes nil)
 
 (use-package eglot
@@ -13,6 +14,9 @@
               ("C-c o" . eglot-code-actions)
               ("C-c C-r" . eglot-reconnect))
   :init
+  (add-to-list 'my/formatter-beautify-minor-alist
+               '(eglot--managed-mode . eglot-format-buffer))
+
   ;; Fix windows-nt EOL
   (defun my/eglot--text-clean-eol(&rest args)
     (when (eq system-type 'windows-nt)
@@ -22,8 +26,12 @@
 	      (replace-match "" t t)))))
   (advice-add #'eglot--apply-text-edits :after #'my/eglot--text-clean-eol)
 
-  (add-to-list 'my/formatter-beautify-minor-alist
-               '(eglot--managed-mode . eglot-format-buffer))
+  ;; Advice for ignore *-mode
+  (defun my/eglot-current-server (orig-fn)
+    (if (derived-mode-p my/eglot-language-ignore-modes)
+        (setq eglot--cached-server nil)
+      (funcall orig-fn)))
+  (advice-add #'eglot-current-server :around #'my/eglot-current-server)
 
   :config
   (setq-default eglot-menu-string "♿"
@@ -39,13 +47,6 @@
   ;; Remove control link
   (dolist (type '(eglot-note eglot-warning eglot-error))
     (cl-remf (symbol-plist type) 'flymake-overlay-control))
-
-  ;; Advice for ignore *-mode
-  (defun my/eglot-current-server (orig-fn)
-    (if (derived-mode-p my/eglot-language-ignore-modes)
-        (setq eglot--cached-server nil)
-      (funcall orig-fn)))
-  (advice-add 'eglot-current-server :around #'my/eglot-current-server)
 
   (defun my/eglot--language-key (server)
     (let* ((language-id (if (fboundp 'eglot--language-id)
@@ -73,7 +74,19 @@
     (or (my/eglot--language-etc-json-read
          (concat "lsp-" (my/eglot--language-key server) "-workspace.json"))
         ()))
-  (setq-default eglot-workspace-configuration 'my/eglot--workspace-configuration))
+  (setq-default eglot-workspace-configuration 'my/eglot--workspace-configuration)
+
+  ;; Auto start session for language group
+  (defun my/eglot--auto-configure()
+    (cl-loop
+     for (mode-or-modes . contact) in eglot-server-programs
+     for group-modes = (cl-mapcar (lambda (x)
+                                    (if (not (consp x)) x (car x)))
+                                  (if (listp mode-or-modes) mode-or-modes (list mode-or-modes)))
+     when (cl-intersection group-modes my/eglot-language-auto-modes)
+     do (dolist (mode group-modes)
+          (add-hook (intern (concat (symbol-name mode) "-hook")) 'eglot-ensure))))
+  (add-hook 'after-init-hook 'my/eglot--auto-configure))
 
 (provide 'framework-eglot)
 ;;; framework-eglot.el ends here

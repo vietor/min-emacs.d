@@ -3,11 +3,10 @@
 ;;; Code:
 
 (use-package python
-  :hook ((python-mode . eglot-ensure)
-         (python-ts-mode . eglot-ensure))
   :init
   (setq python-shell-interpreter "python3")
-  (add-to-list 'my/treesit-remap-langs "python"))
+  (add-to-list 'my/treesit-remap-langs "python")
+  (add-to-list 'my/eglot-language-auto-modes 'python-mode))
 
 (use-package pip-requirements
   :ensure t)

@@ -40,12 +40,7 @@
                 typescript-ts-mode))
 
 (when (executable-find "typescript-language-server")
-  (addx-hook '(js-mode-hook
-               js-ts-mode-hook
-               tsx-ts-mode-hook
-               typescript-ts-mode-hook
-               typescript-mode-hook)
-             'eglot-ensure)
+  (add-to-list 'my/eglot-language-auto-modes 'js-mode)
   (addx-to-list 'my/eglot-language-alias-key
                 '(("typescript" . "javascript")
                   ("typescriptreact" . "javascript"))))

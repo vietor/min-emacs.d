@@ -7,11 +7,7 @@
   :init
   (addx-to-list 'my/treesit-remap-langs
                 '("c" "c++"))
-  (addx-hook '(c-mode-hook
-               c++-mode-hook
-               c-ts-mode-hook
-               c++-ts-mode-hook)
-             'eglot-ensure))
+  (add-to-list 'my/eglot-language-auto-modes 'c-mode))
 
 (when (my/treesit-available-p)
   (use-package cmake-ts-mode))
