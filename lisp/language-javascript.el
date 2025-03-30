@@ -32,16 +32,12 @@
     :ensure t
     :mode ("\\.ts[x]\\'" . typescript-mode)))
 
-(use-package prettier-js
-  :ensure t
-  :when (executable-find "prettier")
-  :commands (prettier-js)
-  :init
-  (dolist (entity '((js-mode . prettier-js)
-                    (js-ts-mode . prettier-js)
-                    (typescript-mode . prettier-js)
-                    (typescript-ts-mode . prettier-js)))
-    (add-to-list 'my/formatter-beautify-alist entity)))
+(dolist (mode '(js-mode
+                js-ts-mode
+                tsx-ts-mode
+                typescript-mode
+                typescript-ts-mode))
+  (add-to-list 'my/formatter-beautify-prettier-modes mode))
 
 (when (executable-find "typescript-language-server")
   (dolist (hook '(js-mode-hook
@@ -50,8 +46,9 @@
                   typescript-ts-mode-hook
                   typescript-mode-hook))
     (add-hook hook 'eglot-ensure))
-  (add-to-list 'my/eglot-language-alias-key '("typescript" . "javascript"))
-  (add-to-list 'my/eglot-language-alias-key '("typescriptreact" . "javascript")))
+  (dolist (alias-key '(("typescript" . "javascript")
+                       ("typescriptreact" . "javascript")))
+    (add-to-list 'my/eglot-language-alias-key alias-key)))
 
 (provide 'language-javascript)
 ;;; language-javascript.el ends here
