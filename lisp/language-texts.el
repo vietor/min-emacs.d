@@ -10,7 +10,8 @@
 (use-package yaml-mode
   :ensure t
   :init
-  (add-to-list 'my/treesit-remap-langs "yaml"))
+  (add-to-list 'my/treesit-remap-langs "yaml")
+  (add-to-list 'my/formatter-beautify-prettier-modes 'yaml-mode))
 
 ;; XML
 (use-package nxml-mode
