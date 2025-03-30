@@ -7,6 +7,7 @@
   :ensure t
   :init
   (add-to-list 'my/treesit-remap-langs "json")
+  (add-to-list 'my/eglot-language-ignore-modes 'json-mode)
 
   (defun my/json-formatter-beautify ()
     (call-interactively 'json-mode-beautify))
@@ -49,7 +50,8 @@
                   typescript-ts-mode-hook
                   typescript-mode-hook))
     (add-hook hook 'eglot-ensure))
-  (add-to-list 'my/eglot-language-alias-key '("typescript" . "javascript")))
+  (add-to-list 'my/eglot-language-alias-key '("typescript" . "javascript"))
+  (add-to-list 'my/eglot-language-alias-key '("typescriptreact" . "javascript")))
 
 (provide 'language-javascript)
 ;;; language-javascript.el ends here

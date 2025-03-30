@@ -51,7 +51,7 @@
     (let* ((language-id (if (fboundp 'eglot--language-id)
                             (eglot--language-id server)
                           (car (eglot--language-ids server))))
-           (language-key (replace-regexp-in-string "\\(-ts\\|react\\)$" "" language-id t t)))
+           (language-key (replace-regexp-in-string "\\(-ts\\)$" "" language-id t t)))
       (or (cdr (assoc-string language-key my/eglot-language-alias-key)) language-key)))
 
   (defun my/eglot--language-etc-json-read (file)
