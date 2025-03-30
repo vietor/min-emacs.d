@@ -28,8 +28,8 @@
                           "Microsoft Yahei UI")))
 
 (setq inhibit-compacting-font-caches t)
-(add-hook 'window-setup-hook #'my/setup-better-fonts)
-(add-hook 'server-after-make-frame-hook #'my/setup-better-fonts)
+(add-hook 'window-setup-hook 'my/setup-better-fonts)
+(add-hook 'server-after-make-frame-hook 'my/setup-better-fonts)
 
 (provide 'editor-locales)
 ;;; editor-locales.el ends here

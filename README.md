@@ -18,7 +18,7 @@ pip install python-lsp-server python-lsp-ruff
 Use Language Server
 
 ```bash
-npm install -g typescript-language-server prettier
+npm install -g typescript-language-server typescript prettier
 ```
 
 ## Java
