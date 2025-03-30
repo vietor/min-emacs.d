@@ -11,9 +11,9 @@
 
   (defun my/json-formatter-beautify ()
     (call-interactively 'json-mode-beautify))
-  (dolist (entity '((json-mode . my/json-formatter-beautify)
-                    (json-ts-mode . my/json-formatter-beautify)))
-    (add-to-list 'my/formatter-beautify-alist entity)))
+  (addx-to-list 'my/formatter-beautify-alist
+                '((json-mode . my/json-formatter-beautify)
+                  (json-ts-mode . my/json-formatter-beautify))))
 
 ;; Javascript
 (use-package js-mode
@@ -32,23 +32,23 @@
     :ensure t
     :mode ("\\.ts[x]\\'" . typescript-mode)))
 
-(dolist (mode '(js-mode
+(addx-to-list 'my/formatter-beautify-prettier-modes
+              '(js-mode
                 js-ts-mode
                 tsx-ts-mode
                 typescript-mode
                 typescript-ts-mode))
-  (add-to-list 'my/formatter-beautify-prettier-modes mode))
 
 (when (executable-find "typescript-language-server")
-  (dolist (hook '(js-mode-hook
-                  js-ts-mode-hook
-                  tsx-ts-mode-hook
-                  typescript-ts-mode-hook
-                  typescript-mode-hook))
-    (add-hook hook 'eglot-ensure))
-  (dolist (alias-key '(("typescript" . "javascript")
-                       ("typescriptreact" . "javascript")))
-    (add-to-list 'my/eglot-language-alias-key alias-key)))
+  (addx-hook '(js-mode-hook
+               js-ts-mode-hook
+               tsx-ts-mode-hook
+               typescript-ts-mode-hook
+               typescript-mode-hook)
+             'eglot-ensure)
+  (addx-to-list 'my/eglot-language-alias-key
+                '(("typescript" . "javascript")
+                  ("typescriptreact" . "javascript"))))
 
 (provide 'language-javascript)
 ;;; language-javascript.el ends here

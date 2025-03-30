@@ -23,12 +23,13 @@
   :config
   (setq-default agtags-key-prefix "M-g t"
                 agtags-global-treat-text t)
-  (dolist (file agtags-created-tag-files)
-    (add-to-list 'grep-find-ignored-files file))
+  (addx-to-list 'grep-find-ignored-files
+                agtags-created-tag-files)
 
   (agtags-bind-keys)
-  (dolist (hook '(prog-mode-hook text-mode-hook))
-    (add-hook hook 'agtags-mode)))
+  (addx-hook '(prog-mode-hook
+               text-mode-hook)
+             'agtags-mode))
 
 (provide 'toolkit-grep)
 ;;; toolkit-grep.el ends here

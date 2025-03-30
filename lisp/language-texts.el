@@ -11,7 +11,9 @@
   :ensure t
   :init
   (add-to-list 'my/treesit-remap-langs "yaml")
-  (add-to-list 'my/formatter-beautify-prettier-modes 'yaml-mode))
+  (addx-to-list 'my/formatter-beautify-prettier-modes
+                '(yaml-mode
+                  yaml-ts-mode)))
 
 ;; XML
 (use-package nxml-mode

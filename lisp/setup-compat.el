@@ -22,6 +22,23 @@
     (interactive)
     (find-file (completing-read "Open recent file: " recentf-list))))
 
+
+;;; Better functions
+
+(unless (fboundp 'addx-hook)
+  (defun addx-hook (hook function &optional depth local)
+    (if (not (listp hook))
+        (add-hook hook function depth local)
+      (dolist (elt hook)
+        (add-hook elt function depth local)))))
+
+(unless (fboundp 'addx-to-list)
+  (defun addx-to-list(symbol element &optional append compare-fn)
+    (if (not (listp element))
+        (add-to-list symbol element append compare-fn)
+      (dolist (elt element)
+        (add-to-list symbol elt append compare-fn)))))
+
 ;;; Platform hooks
 
 (when (eq system-type 'windows-nt)

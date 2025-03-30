@@ -5,14 +5,13 @@
 (use-package cc-mode
   :when (executable-find "clangd")
   :init
-  (add-to-list 'my/treesit-remap-langs "c")
-  (add-to-list 'my/treesit-remap-langs "c++")
-
-  (dolist (hook '(c-mode-hook
-                  c++-mode-hook
-                  c-ts-mode-hook
-                  c++-ts-mode-hook))
-    (add-hook hook 'eglot-ensure)))
+  (addx-to-list 'my/treesit-remap-langs
+                '("c" "c++"))
+  (addx-hook '(c-mode-hook
+               c++-mode-hook
+               c-ts-mode-hook
+               c++-ts-mode-hook)
+             'eglot-ensure))
 
 (when (my/treesit-available-p)
   (use-package cmake-ts-mode))
