@@ -40,7 +40,7 @@
                 typescript-ts-mode))
 
 (when (executable-find "typescript-language-server")
-  (add-to-list 'my/eglot-language-auto-modes 'js-mode)
+  (add-to-list 'my/eglot-language-grouped-modes 'js-mode)
   (addx-to-list 'my/eglot-language-alias-key
                 '(("typescript" . "javascript")
                   ("typescriptreact" . "javascript"))))

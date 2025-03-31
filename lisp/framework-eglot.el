@@ -3,8 +3,8 @@
 ;;; Code:
 
 (defvar my/eglot-language-alias-key nil)
-(defvar my/eglot-language-auto-modes nil)
 (defvar my/eglot-language-ignore-modes nil)
+(defvar my/eglot-language-grouped-modes nil)
 
 (use-package eglot
   :ensure t
@@ -27,11 +27,11 @@
   (advice-add #'eglot--apply-text-edits :after #'my/eglot--text-clean-eol)
 
   ;; Advice for ignore *-mode
-  (defun my/eglot-current-server (orig-fn)
+  (defun my/eglot--current-server (orig-fn)
     (if (derived-mode-p my/eglot-language-ignore-modes)
         (setq eglot--cached-server nil)
       (funcall orig-fn)))
-  (advice-add #'eglot-current-server :around #'my/eglot-current-server)
+  (advice-add #'eglot-current-server :around #'my/eglot--current-server)
 
   :config
   (setq-default eglot-menu-string "♿"
@@ -80,11 +80,13 @@
   (defun my/eglot--auto-configure()
     (cl-loop
      for (mode-or-modes . contact) in eglot-server-programs
-     for group-modes = (cl-mapcar (lambda (x)
-                                    (if (not (consp x)) x (car x)))
-                                  (if (listp mode-or-modes) mode-or-modes (list mode-or-modes)))
-     when (cl-intersection group-modes my/eglot-language-auto-modes)
-     do (dolist (mode group-modes)
+     for grouped-modes = (cl-mapcar (lambda (x)
+                                      (if (not (consp x)) x (car x)))
+                                    (if (listp mode-or-modes)
+                                        mode-or-modes
+                                      (list mode-or-modes)))
+     when (cl-intersection grouped-modes my/eglot-language-grouped-modes)
+     do (dolist (mode grouped-modes)
           (add-hook (intern (concat (symbol-name mode) "-hook")) 'eglot-ensure))))
   (add-hook 'after-init-hook 'my/eglot--auto-configure))
 

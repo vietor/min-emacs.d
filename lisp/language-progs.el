@@ -15,13 +15,13 @@
   :init
   (setq rust-format-on-save t
         rust-mode-treesitter-derive (my/treesit-available-p))
-  (add-to-list 'my/eglot-language-auto-modes 'rust-mode))
+  (add-to-list 'my/eglot-language-grouped-modes 'rust-mode))
 
 (use-package dart-mode
   :ensure t
   :when (executable-find "dart")
   :init
-  (add-to-list 'my/eglot-language-auto-modes 'dart-mode))
+  (add-to-list 'my/eglot-language-grouped-modes 'dart-mode))
 
 (provide 'language-progs)
 ;;; language-progs.el ends here
