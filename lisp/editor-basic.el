@@ -34,6 +34,9 @@
               tab-bar-show nil
               bidi-display-reordering nil)
 
+;; Disable ispell backends in text-mode
+(setq-default text-mode-ispell-word-completion nil)
+
 ;; Better cursor
 (blink-cursor-mode -1)
 (setq x-stretch-cursor nil)
