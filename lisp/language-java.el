@@ -118,5 +118,26 @@
                              "-data" ,workspace-dir))))
   (add-to-list 'eglot-server-programs '((java-mode java-ts-mode) . my/java-ls--contact)))
 
+(use-package kotlin-mode
+  :ensure t
+  :when (executable-find "java")
+  :hook (kotlin-mode . eglot-ensure)
+  :init
+  (defclass eglot-kotlin-ls (eglot-lsp-server) ()
+    :documentation "Kotlin Language Server.")
+
+  (defun my/kotlin-ls--contact (interactive)
+    (let* ((install-dir
+            (my/regexp-file-found user-emacs-space-directory "kotlin-language-server-*" "kotlin-language-server"))
+           (execute-file
+            (expand-file-name (concat "bin/kotlin-language-server"
+                                      (cond ((string= system-type "windows-nt") ".bat") (t "")))
+                              install-dir)))
+      (unless (file-directory-p install-dir)
+        (eglot--error "Not found 'kotlin-language-server' directory in '%s'" user-emacs-space-directory))
+
+      (cons 'eglot-java-ls `(,execute-file))))
+  (add-to-list 'eglot-server-programs '((kotlin-mode kotlin-ts-mode) . my/kotlin-ls--contact)))
+
 (provide 'language-java)
 ;;; language-java.el ends here
