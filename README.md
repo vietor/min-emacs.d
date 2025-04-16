@@ -28,7 +28,35 @@ Depencency directories in ```${user-emacs-space-directory}```:
 
 | *Path*                | *Usage*                          |
 |-----------------------|----------------------------------|
-| eclipse.assists       | include plugins for lombook*.jar |
-| eclipse.caches        | cache for jdt://contents files   |
-| eclipse.workspaces    | store project's workspace files  |
+| java.assists          | include plugins for lombook*.jar |
+| java-ls.caches        | cache for jdt://contents files   |
+| java-ls.workspaces    | store project's workspace files  |
 | jdt-language-server-* | eclipse-jdtls's files            |
+
+# Toolkit
+
+## Tree-sitter
+
+Use bundle ```https://github.com/emacs-tree-sitter/tree-sitter-langs```.  
+Target directories is ```${user-emacs-space-directory}/tree-sitter/```
+
+* Rename script for `Linux`
+```bash
+cd tree-sitter
+
+for file in *.so; do
+    mv "$file" "libtree-sitter-$file"
+done
+```
+
+* Rename script for `Windows`
+
+```cmd
+@echo off
+cd tree-sitter
+
+for /f %%f in ('dir /b *.dll') do (
+  ren %%f libtree-sitter-%%f
+)
+```
+
