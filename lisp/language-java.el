@@ -26,7 +26,6 @@
   (add-to-list 'recentf-exclude my/java-ls--cache-dir)
 
   (defun my/eglot-java-ensure ()
-    (setq fill-column 100)
     (if (string-prefix-p my/java-ls--cache-dir
                          (buffer-file-name))
         (read-only-mode)
