@@ -37,6 +37,7 @@
   (setq-default eglot-menu-string "♿"
                 eglot-autoshutdown t
                 eglot-events-buffer-size 0
+                eglot-events-buffer-config '(:size 0)
                 eglot-confirm-server-initiated-edits nil
                 eglot-ignored-server-capabilities '(:hoverProvider
                                                     :codeLensProvider
