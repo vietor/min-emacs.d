@@ -7,6 +7,10 @@
 ;; Initialize repository
 
 (add-to-list 'package-archives '( "melpa" . "https://melpa.org/packages/") t)
+(setq package-archive-priorities
+      '(("gnu" . 10)
+        ("melpa" . 5)))
+
 (setq package-user-dir
       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
                         user-emacs-directory))
