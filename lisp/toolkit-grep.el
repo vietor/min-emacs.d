@@ -31,5 +31,9 @@
                text-mode-hook)
              'agtags-mode))
 
+;; xref
+(when (executable-find "rg")
+  (setq xref-search-program 'ripgrep))
+
 (provide 'toolkit-grep)
 ;;; toolkit-grep.el ends here
