@@ -4,9 +4,7 @@
 
 ;; PHP
 (use-package php-mode
-  :ensure t
-  :bind (:map php-mode-map
-              ("C-." . nil)))
+  :ensure t)
 
 ;; Rust
 (use-package rust-mode

@@ -17,10 +17,6 @@
 ;; Javascript
 (use-package js-mode
   :mode "\\.\\(\\js\\|es6\\|mjs\\)\\'"
-  :bind ((:map js-mode-map
-               ("M-." . nil))
-         (:map js-ts-mode-map
-               ("M-." . nil)))
   :init
   (setq-default js-indent-level 2))
 
