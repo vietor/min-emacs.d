@@ -22,7 +22,6 @@
   (defconst my/java-ls--cache-dir
     (concat user-emacs-space-directory "java-ls.caches/"))
 
-  (add-to-list 'my/treesit-remap-langs "java")
   (add-to-list 'recentf-exclude my/java-ls--cache-dir)
 
   (defun my/eglot-java-ensure ()

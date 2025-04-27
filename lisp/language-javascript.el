@@ -6,7 +6,6 @@
 (use-package json-mode
   :ensure t
   :init
-  (add-to-list 'my/treesit-remap-langs "json")
   (add-to-list 'my/eglot-language-ignore-modes 'json-mode)
 
   (defun my/json-formatter-beautify ()
@@ -23,8 +22,7 @@
          (:map js-ts-mode-map
                ("M-." . nil)))
   :init
-  (setq-default js-indent-level 2)
-  (add-to-list 'my/treesit-remap-langs "js"))
+  (setq-default js-indent-level 2))
 
 (if (my/treesit-available-p)
     (use-package typescript-ts-mode)
