@@ -26,6 +26,7 @@
 
 (require 'setup-elpa)
 (require 'setup-compat)
+(require 'setup-proxy)
 
 (require 'editor-basic)
 (require 'editor-locales)
