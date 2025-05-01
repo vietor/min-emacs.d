@@ -9,8 +9,9 @@
 ;; Initliaze `load-path'
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-;; Initliaze `custom-file'
-(setq custom-file (locate-user-emacs-file "custom.el"))
+;; Disable custom-file & dir-local
+(setq custom-file null-device)
+(setq enable-dir-local-variables nil)
 
 ;; Define extend space directory
 (defvar user-emacs-space-directory
@@ -49,10 +50,6 @@
 
 (require 'language-progs)
 (require 'language-texts)
-
-;; Load custom configurations
-(when (file-exists-p custom-file)
-  (load custom-file))
 
 ;; Allow access from emacsclient
 (add-hook 'after-init-hook
