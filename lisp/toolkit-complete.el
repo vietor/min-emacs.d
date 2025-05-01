@@ -37,9 +37,8 @@
 (use-package cape
   :ensure t
   :init
-  (addx-to-list 'completion-at-point-functions
-                '(cape-file
-                  cape-keyword)))
+  (mix-add-to-list 'completion-at-point-functions
+                   '(cape-file cape-keyword)))
 
 (provide 'toolkit-complete)
 ;;; toolkit-complete.el ends here

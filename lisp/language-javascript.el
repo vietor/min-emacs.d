@@ -10,9 +10,9 @@
 
   (defun my/json-formatter-beautify ()
     (call-interactively 'json-mode-beautify))
-  (addx-to-list 'my/formatter-beautify-alist
-                '((json-mode . my/json-formatter-beautify)
-                  (json-ts-mode . my/json-formatter-beautify))))
+  (mix-add-to-list 'my/formatter-beautify-alist
+                   '((json-mode . my/json-formatter-beautify)
+                     (json-ts-mode . my/json-formatter-beautify))))
 
 ;; Javascript
 (use-package js-mode
@@ -26,18 +26,18 @@
     :ensure t
     :mode ("\\.ts[x]\\'" . typescript-mode)))
 
-(addx-to-list 'my/formatter-beautify-prettier-modes
-              '(js-mode
-                js-ts-mode
-                tsx-ts-mode
-                typescript-mode
-                typescript-ts-mode))
+(mix-add-to-list 'my/formatter-beautify-prettier-modes
+                 '(js-mode
+                   js-ts-mode
+                   tsx-ts-mode
+                   typescript-mode
+                   typescript-ts-mode))
 
 (when (executable-find "typescript-language-server")
   (add-to-list 'my/eglot-language-grouped-modes 'js-mode)
-  (addx-to-list 'my/eglot-language-alias-key
-                '(("typescript" . "javascript")
-                  ("typescriptreact" . "javascript"))))
+  (mix-add-to-list 'my/eglot-language-alias-key
+                   '(("typescript" . "javascript")
+                     ("typescriptreact" . "javascript"))))
 
 (provide 'language-javascript)
 ;;; language-javascript.el ends here

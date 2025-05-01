@@ -23,13 +23,13 @@
   :config
   (setq-default agtags-key-prefix "M-g t"
                 agtags-global-treat-text t)
-  (addx-to-list 'grep-find-ignored-files
-                agtags-created-tag-files)
+  (mix-add-to-list 'grep-find-ignored-files
+                   agtags-created-tag-files)
 
   (agtags-bind-keys)
-  (addx-hook '(prog-mode-hook
-               text-mode-hook)
-             'agtags-mode))
+  (mix-add-hook '(prog-mode-hook
+                  text-mode-hook)
+                'agtags-mode))
 
 ;; xref
 (when (executable-find "rg")

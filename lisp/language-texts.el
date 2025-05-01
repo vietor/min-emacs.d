@@ -10,9 +10,8 @@
 (use-package yaml-mode
   :ensure t
   :init
-  (addx-to-list 'my/formatter-beautify-prettier-modes
-                '(yaml-mode
-                  yaml-ts-mode)))
+  (mix-add-to-list 'my/formatter-beautify-prettier-modes
+                   '(yaml-mode yaml-ts-mode)))
 
 ;; XML
 (use-package nxml-mode
