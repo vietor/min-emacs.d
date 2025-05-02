@@ -33,6 +33,7 @@
 (require 'editor-enhance)
 (require 'editor-plugins)
 
+(require 'toolkit-llm)
 (require 'toolkit-git)
 (require 'toolkit-grep)
 (require 'toolkit-complete)
