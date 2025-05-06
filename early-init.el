@@ -26,7 +26,7 @@
 (setq gc-cons-threshold most-positive-fixnum)
 (add-hook 'emacs-startup-hook
 	      (lambda ()
-	        (setq gc-cons-threshold (* 24 1024 1024))))
+	        (setq gc-cons-threshold (* 128 1024 1024))))
 
 (provide 'early-init)
 ;;; early-init.el ends here

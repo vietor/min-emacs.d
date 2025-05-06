@@ -1,4 +1,4 @@
-                                        ;e;; framework-prog.el --- -*- lexical-binding: t -*-
+;;; framework-prog.el --- -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
