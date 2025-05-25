@@ -8,9 +8,9 @@
 
 (add-to-list 'package-archives '( "melpa" . "https://melpa.org/packages/") t)
 (setq package-archive-priorities
-      '(("nognu" . 50)
-        ("melpa" . 30)
-        ("gnu" . 10)))
+      '(("gnu" . 10)
+        ("nognu" . 20)
+        ("melpa" . 30)))
 
 (setq package-user-dir
       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)

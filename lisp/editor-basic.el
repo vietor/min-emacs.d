@@ -112,5 +112,19 @@
                      (float-time (time-subtract (current-time)
                                                 before-init-time)))))
 
+;; Better keyboard-quit
+(defun my/keyboard-quit-dwim ()
+  (interactive)
+  (cond
+   ((region-active-p)
+    (keyboard-quit))
+   ((derived-mode-p 'completion-list-mode)
+    (delete-completion-window))
+   ((> (minibuffer-depth) 0)
+    (abort-recursive-edit))
+   (t
+    (keyboard-quit))))
+(define-key global-map (kbd "C-g") #'my/keyboard-quit-dwim)
+
 (provide 'editor-basic)
 ;;; editor-basic.el ends here
