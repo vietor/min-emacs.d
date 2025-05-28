@@ -23,6 +23,7 @@
       process-adaptive-read-buffering nil)
 
 ;; Adjust default GC threshold
+(setq gc-cons-percentage 0.5)
 (setq gc-cons-threshold most-positive-fixnum)
 (add-hook 'emacs-startup-hook
 	      (lambda ()
