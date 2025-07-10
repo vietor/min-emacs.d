@@ -85,7 +85,7 @@
   (add-hook 'after-init-hook 'pixel-scroll-precision-mode))
 
 ;; Better mouse behavior
-(when window-system
+(when (display-graphic-p)
   (mouse-wheel-mode t)
   (setq mouse-yank-at-point t
         mouse-wheel-scroll-amount '(1

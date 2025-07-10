@@ -4,7 +4,7 @@
 
 ;; Load theme
 
-(if (not window-system)
+(if (not (display-graphic-p))
     (load-theme 'tango-dark)
   (use-package monokai-theme
     :ensure t

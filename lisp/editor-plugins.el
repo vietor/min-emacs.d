@@ -118,7 +118,7 @@
         (message "File '%s' successfully removed" filename)))))
 (bind-key "M-g f d" 'my/delete-current-buffer-file)
 
-(when window-system
+(when (display-graphic-p)
   (defun my/browse-current-file ()
     (interactive)
     (let ((filename (buffer-file-name)))
@@ -129,7 +129,7 @@
   (bind-key "M-g f b" 'my/browse-current-file))
 
 ;; Open new emacs instance
-(when window-system
+(when (display-graphic-p)
   (defun my/open-new-emacs()
     "Open a new Emacs process."
     (interactive)
