@@ -126,15 +126,15 @@
 
   (defun my/kotlin-ls--contact (interactive)
     (let* ((install-dir
-            (my/regexp-file-found user-emacs-space-directory "kotlin-language-server-*" "kotlin-language-server"))
+            (my/regexp-file-found user-emacs-space-directory "kotlin-*"))
            (execute-file
-            (expand-file-name (concat "bin/kotlin-language-server"
-                                      (cond ((string= system-type "windows-nt") ".bat") (t "")))
+            (expand-file-name (concat "kotlin-lsp"
+                                      (cond ((string= system-type "windows-nt") ".cmd") (t ".sh")))
                               install-dir)))
       (unless (file-directory-p install-dir)
-        (eglot--error "Not found 'kotlin-language-server' directory in '%s'" user-emacs-space-directory))
+        (eglot--error "Not found 'kotlin-lsp' directory in '%s'" user-emacs-space-directory))
 
-      (cons 'eglot-java-ls `(,execute-file))))
+      (cons 'eglot-kotlin-ls `(,execute-file "--stdio"))))
   (add-to-list 'eglot-server-programs '((kotlin-mode kotlin-ts-mode) . my/kotlin-ls--contact)))
 
 (provide 'language-java)

@@ -36,6 +36,7 @@
   :config
   (setq-default eglot-menu-string "♿"
                 eglot-autoshutdown t
+                eglot-connect-timeout 60
                 eglot-events-buffer-size 0
                 eglot-events-buffer-config '(:size 0)
                 eglot-confirm-server-initiated-edits nil
