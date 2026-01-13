@@ -5,6 +5,7 @@
 (defvar my/eglot-language-alias-key nil)
 (defvar my/eglot-language-ignore-modes nil)
 (defvar my/eglot-language-grouped-modes nil)
+(defvar my/eglot-workspace-configuration-alist nil)
 
 (use-package eglot
   :ensure t
@@ -73,9 +74,14 @@
 
   ;; Custom language workspace configuration
   (defun my/eglot--workspace-configuration (server)
-    (or (my/eglot--language-etc-json-read
-         (concat "lsp-" (my/eglot--language-key server) "-workspace.json"))
-        ()))
+    (let ((language-key (my/eglot--language-key server)))
+      (or (my/eglot--language-etc-json-read
+           (concat "lsp-" language-key  "-workspace.json"))
+          (let ((language-fun (cdr (assoc language-key my/eglot-workspace-configuration-alist))))
+            (when language-fun
+              (let ((current-proj (project-current)))
+                (funcall language-fun  (if current-proj (project-root current-proj) default-directory)))))
+          ())))
   (setq-default eglot-workspace-configuration 'my/eglot--workspace-configuration)
 
   ;; Auto start session for language group
