@@ -2,12 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(defun my/treesit-available-p()
+(defconst my/treesit-is-available
   (and (fboundp 'treesit-available-p)
 	   (treesit-available-p)))
 
 (use-package treesit
-  :when (my/treesit-available-p)
+  :when my/treesit-is-available
   :init
   (setq treesit-font-lock-level 4)
   (add-to-list 'treesit-extra-load-path

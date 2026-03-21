@@ -37,7 +37,7 @@
   (add-to-list 'my/formatter-beautify-alist '(nxml-mode . my/nxml-formatter-beautify)))
 
 ;; Treesit
-(when (my/treesit-available-p)
+(when my/treesit-is-available
   (use-package dockerfile-ts-mode))
 
 (provide 'language-texts)

@@ -10,6 +10,7 @@
 
 ;; wgrep
 (use-package wgrep
+  :defer t
   :ensure t
   :config
   (setq wgrep-enable-key "e"
@@ -17,6 +18,7 @@
 
 ;; agtags
 (use-package agtags
+  :defer t
   :ensure t
   :diminish
   :when (executable-find "global")

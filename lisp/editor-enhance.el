@@ -7,6 +7,7 @@
 (if (not (display-graphic-p))
     (load-theme 'tango-dark)
   (use-package monokai-theme
+    :demand t
     :ensure t
     :config
     (load-theme 'monokai t)))

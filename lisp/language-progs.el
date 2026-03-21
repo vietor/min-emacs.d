@@ -12,7 +12,7 @@
   :when (executable-find "rust-analyzer")
   :init
   (setq rust-format-on-save t
-        rust-mode-treesitter-derive (my/treesit-available-p))
+        rust-mode-treesitter-derive my/treesit-is-available)
   (add-to-list 'my/eglot-language-grouped-modes 'rust-mode))
 
 (use-package dart-mode

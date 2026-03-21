@@ -20,7 +20,7 @@
   :init
   (setq-default js-indent-level 2))
 
-(if (my/treesit-available-p)
+(if my/treesit-is-available
     (use-package typescript-ts-mode)
   (use-package typescript-mode
     :ensure t

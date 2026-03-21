@@ -7,7 +7,7 @@
   :init
   (add-to-list 'my/eglot-language-grouped-modes 'c-mode))
 
-(when (my/treesit-available-p)
+(when my/treesit-is-available
   (use-package cmake-ts-mode))
 
 (provide 'language-cpp)
