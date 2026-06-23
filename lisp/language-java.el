@@ -16,20 +16,9 @@
 
 (use-package java
   :when (executable-find "java")
-  :hook ((java-mode . my/eglot-java-ensure)
-         (java-ts-mode . my/eglot-java-ensure))
+  :hook ((java-mode . eglot-ensure)
+         (java-ts-mode . eglot-ensure))
   :init
-  (defconst my/java-ls--cache-dir
-    (concat user-emacs-space-directory "java-ls.caches/"))
-
-  (add-to-list 'recentf-exclude my/java-ls--cache-dir)
-
-  (defun my/eglot-java-ensure ()
-    (if (string-prefix-p my/java-ls--cache-dir
-                         (buffer-file-name))
-        (read-only-mode)
-      (eglot-ensure)))
-
   (defclass eglot-java-ls (eglot-lsp-server) ()
     :documentation "Eclipse's Java Development Tools Language Server.")
 
@@ -45,7 +34,8 @@
     (let* ((uri (car args))
            (source-file
             (concat
-             my/java-ls--cache-dir
+             (expand-file-name ".settings/temp" (project-root (eglot--current-project)))
+             "/"
              (save-match-data
                (when (string-match "jdt://contents/\\(.*\\)\\.\\(java\\|class\\)\\?" uri)
                  (concat (match-string 1 uri) ".java")))))
