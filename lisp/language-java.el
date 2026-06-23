@@ -47,7 +47,7 @@
             (concat
              my/java-ls--cache-dir
              (save-match-data
-               (when (string-match "jdt://contents/\\(.*\\)\\.class\\?" uri)
+               (when (string-match "jdt://contents/\\(.*\\)\\.\\(java\\|class\\)\\?" uri)
                  (concat (match-string 1 uri) ".java")))))
            (source-directory (file-name-directory source-file)))
       (unless (file-readable-p source-file)
