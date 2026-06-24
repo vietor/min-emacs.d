@@ -116,10 +116,10 @@
 
   (defun my/kotlin-ls--contact (interactive)
     (let* ((install-dir
-            (my/regexp-file-found user-emacs-space-directory "kotlin-*"))
+            (my/regexp-file-found user-emacs-space-directory "kotlin-server-*"))
            (execute-file
-            (expand-file-name (concat "kotlin-lsp"
-                                      (cond ((string= system-type "windows-nt") ".cmd") (t ".sh")))
+            (expand-file-name (concat "bin/intellij-server"
+                                      (cond ((string= system-type "windows-nt") ".exe") (t "")))
                               install-dir)))
       (unless (file-directory-p install-dir)
         (eglot--error "Not found 'kotlin-lsp' directory in '%s'" user-emacs-space-directory))
