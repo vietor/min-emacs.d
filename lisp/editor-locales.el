@@ -21,6 +21,9 @@
                   (cl-return)))))
 
 (defun my/setup-better-fonts ()
+  (my/try-set-font 'symbol '("Apple Symbols"
+                             "Noto Sans Symbols"
+                             "Segoe UI Symbol"))
   (my/try-set-font 'emoji '("Apple Color Emoji"
                             "Noto Color Emoji"
                             "Segoe UI Emoji"))
