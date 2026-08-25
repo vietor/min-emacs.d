@@ -27,13 +27,6 @@
   (with-eval-after-load 'corfu
     (corfu-popupinfo-mode)))
 
-(use-package corfu-terminal
-  :ensure t
-  :after corfu
-  :config
-  (with-eval-after-load 'corfu
-    (corfu-terminal-mode)))
-
 (use-package cape
   :ensure t
   :init

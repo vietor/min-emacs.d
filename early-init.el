@@ -1,4 +1,4 @@
-;;; early-init.el --- Emacs 27+ pre-initialisation config
+;;; early-init.el --- -*- lexical-binding: t -*-
 ;;; This file is loaded before the package system and GUI is initialized
 ;;; Commentary:
 ;;; Code:

@@ -41,15 +41,12 @@
                 eglot-events-buffer-size 0
                 eglot-events-buffer-config '(:size 0)
                 eglot-confirm-server-initiated-edits nil
+                eglot-code-action-indications nil
                 eglot-ignored-server-capabilities '(:hoverProvider
                                                     :codeLensProvider
                                                     :inlayHintProvider
                                                     :documentHighlightProvider
                                                     :documentOnTypeFormattingProvider))
-
-  ;; Remove control link
-  (dolist (type '(eglot-note eglot-warning eglot-error))
-    (cl-remf (symbol-plist type) 'flymake-overlay-control))
 
   (defun my/eglot--language-key (server)
     (let* ((language-id (if (fboundp 'eglot--language-id)
