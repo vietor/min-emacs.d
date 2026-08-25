@@ -15,6 +15,7 @@
               ("C-c o" . eglot-code-actions)
               ("C-c C-r" . eglot-reconnect))
   :init
+  (setq-default eglot-menu-string "♿")
   (add-to-list 'my/formatter-beautify-minor-alist
                '(eglot--managed-mode . eglot-format-buffer))
 
@@ -35,8 +36,7 @@
   (advice-add #'eglot-current-server :around #'my/eglot--current-server)
 
   :config
-  (setq-default eglot-menu-string "♿"
-                eglot-autoshutdown t
+  (setq-default eglot-autoshutdown t
                 eglot-connect-timeout 60
                 eglot-events-buffer-size 0
                 eglot-events-buffer-config '(:size 0)
