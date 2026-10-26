@@ -45,8 +45,12 @@
                 eglot-ignored-server-capabilities '(:hoverProvider
                                                     :codeLensProvider
                                                     :inlayHintProvider
-                                                    :documentHighlightProvider
-                                                    :documentOnTypeFormattingProvider))
+                                                    :documentHighlightProvider))
+
+  ;; Disable OnTypeFormatting
+  (add-hook 'eglot-managed-mode-hook
+            (lambda ()
+              (remove-hook 'post-self-insert-hook 'eglot--post-self-insert-hook t)))
 
   (defun my/eglot--language-key (server)
     (let* ((language-id (if (fboundp 'eglot--language-id)

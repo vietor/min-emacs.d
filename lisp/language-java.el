@@ -53,7 +53,7 @@
 
   (defun my/java-ls--workspace()
     (let ((project-dir (project-root (eglot--current-project))))
-      (concat (car (last (split-string project-dir "/") 2))
+      (concat (file-name-nondirectory (directory-file-name project-dir))
               "@"
               (md5 project-dir))))
 
